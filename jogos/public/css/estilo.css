@@ -1,0 +1,26 @@
+/*Tela do Jogo*/
+.divHome{
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.divJogos{
+    
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.divJogoImagem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagemJogo{
+    width: 100px;
+    height: 100px;
+}
+
+/*Fim da tela do Jogo*/
