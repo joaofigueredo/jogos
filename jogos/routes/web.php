@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home',[HomeController::class, 'index'])
-    ->name('home');
+    ->name('home.jogos');
 
 Route::get('/games', [GamesController::class, 'buscarGames'])
     ->name('games');

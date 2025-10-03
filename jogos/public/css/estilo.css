@@ -1,26 +1,87 @@
+.body{
+    background-color: lightgray;
+}
+/*Tela de busca*/
+.bodyHomeJogos{
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.card-busca {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+.form-title {
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+.form-label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+.form-control {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+.botao-buscar {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    font-weight: 500;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+.botao-buscar:hover {
+    background-color: #218838;
+}
+/*Fim de tela de busca*/
+
 /*Tela do Jogo*/
 .divHome{
-    border: 1px solid black;
+    margin: 0 auto;
+    background-color: whitesmoke;
     border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
 }
 
-.divJogos{
-    
-    border: 1px solid black;
-    border-radius: 10px;
-    margin-top: 20px;
-    padding: 10px;
+.divHomeNomeCampo{
+    margin-top: 40px;
 }
-
-.divJogoImagem{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.imagemJogo{
-    width: 100px;
-    height: 100px;
-}
-
 /*Fim da tela do Jogo*/
+
+:root {
+  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+}
+
+.card-jogos {
+  background: #40E0D0;
+  border: 1px solid #dd2476;
+  color: black;
+  margin-bottom: 2rem;
+  width: 18rem;
+  border-radius: 10px;
+}
+.card-titulo-jogo{
+    text-align: center;
+}
+
+.botao-voltar{
+    text-align: end;
+    margin-right: 1px;
+    margin-bottom: 1px
+}
