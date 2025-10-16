@@ -1,15 +1,17 @@
 <x-layout title="Jogos">
-<div class="bodyHomeJogos">
-    <div class="card-busca">
-        <h2 class="form-title text-center">Buscar Jogo</h2>
-        <form  action="{{ route('busca.games') }}" method="POST" id="formBusca">
-            @csrf
-            <div class="mb-3">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do jogo" autofocus>
+    <div class="bodyHomeJogos">
+
+        <div class="card-busca-links">
+            <h2 class="form-title text-center">Buscar Jogo</h2>
+            <div class="divBotoesBusca">
+                <div>
+                    <p class="tituloBusca">Buscar jogos</p>
+                    <a href="{{ route('buscar.games') }}" class="btn-submit botaoLinks">Buscar</a>
+                </div>
+                <div>
+                    <p class="tituloBusca">Buscar Jogos Similares</p>
+                    <a href="{{ route('games.similar') }}" class="btn-submit botaoLinks">Buscar Similares</a>
+                </div>
             </div>
-            <button type="submit" class="btn-submit botao-buscar">Buscar</button>
-        </form>
-    </div>
-</div>
+        </div>
 </x-layout>
