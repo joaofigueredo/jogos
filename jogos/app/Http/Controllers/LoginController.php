@@ -64,4 +64,11 @@ class LoginController extends Controller
 
         return to_route("login.index");
     }
+
+    public function perfil() {
+        $usuario = Auth::user();
+        // dd($usuario->email);
+        return view("login.perfil")
+            ->with('usuario', $usuario);
+    }
 }

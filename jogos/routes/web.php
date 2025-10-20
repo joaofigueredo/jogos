@@ -4,18 +4,25 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GamesController;
+use App\Http\Middleware\ValidarLogin;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(ValidarLogin::class)->group(function () {
+    Route::get('/home',[HomeController::class, 'index'])->name('home.jogos');
+    Route::get('/busca', [GamesController::class, 'busca'])
+    ->name('buscar.games');
+    // rotas protegidas...
+});
 //Rota de inicio
-Route::get('/home',[HomeController::class, 'index'])
-    ->name('home.jogos');
+// Route::get('/home',[HomeController::class, 'index'])
+//     ->middleware('validar.login')    
+//     ->name('home.jogos');
 
 //Rota de busca de jogos
-Route::get('/busca', [GamesController::class, 'busca'])
-    ->name('buscar.games');
+
 
 //Rota de busca de jogos via post
 Route::post('/games', [GamesController::class, 'buscarGames'])
@@ -50,3 +57,7 @@ Route::post('/login', [LoginController::class, 'login'])
 
 Route::post('/logout', [LoginController::class, 'Logout'])
     ->name('login.logout');
+
+
+Route::get('/perfil', [LoginController::class, 'perfil'])
+    ->name('login.perfil');
