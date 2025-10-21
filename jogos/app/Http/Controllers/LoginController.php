@@ -50,8 +50,9 @@ class LoginController extends Controller
         
         if(Auth::attempt($login)){
             $request->session()->regenerate();
-
-            return to_route('buscar.games');
+            $usuario = Auth::user();
+            // dd($usuario);
+            return to_route('buscar.games')->with('mensagemSucesso', "Olá, $usuario->name!");
         }
 
         return to_route('login.index')->withErrors([
@@ -67,8 +68,21 @@ class LoginController extends Controller
 
     public function perfil() {
         $usuario = Auth::user();
-        // dd($usuario->email);
+        // dd($usuario->idPs);
         return view("login.perfil")
             ->with('usuario', $usuario);
+    }
+
+    public function update(Request $request) {
+        User::where('id', Auth::user()->id)
+            ->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'idPs' => $request->idPs,
+                'idXbox' => $request->idXbox
+            ]);
+        
+        $mensagemSucesso = "Perfil atualizado com sucesso!";
+        return to_route("login.perfil")->with('mensagemSucesso', $mensagemSucesso);
     }
 }

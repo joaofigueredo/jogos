@@ -34,12 +34,12 @@
                         </ul>
                         <ul class="navbar-nav">
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-person-circle"> perfil</i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('login.perfil') }}"><i class="bi bi-person"></i>Perfil</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('login.perfil') }}"><i
+                                                class="bi bi-person"></i>Perfil</a></li>
                                     <li>
                                         <div class="d-flexjustify-content-end">
                                             <form method="POST" action="{{ route('login.logout') }}">
@@ -53,9 +53,6 @@
                         </ul>
                     </div>
                     </ul>
-                    <ul class="navbar-nav">
-
-                    </ul>
                 @endif
         @if(!Auth::check())
             <ul class="navbar-nav">
@@ -66,8 +63,12 @@
         @endif
         </div>
     </nav>
-
-    @if ($errors->any())
+    @if(session('mensagemSucesso'))
+        <div class="alert alert-success" id="mensagem">
+            <p>{{ session('mensagemSucesso') }}</p>
+        </div>
+    @endif
+    @if($errors->any())
         <div class="alert alert-danger" id="mensagem">
             <ul>
                 @foreach ($errors->all() as $error)

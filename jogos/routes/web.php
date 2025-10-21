@@ -61,3 +61,6 @@ Route::post('/logout', [LoginController::class, 'Logout'])
 
 Route::get('/perfil', [LoginController::class, 'perfil'])
     ->name('login.perfil');
+
+Route::post('/perfil/update', [loginController::class, 'update'])
+    ->name('login.update');
