@@ -1,18 +1,19 @@
-.body{
+.body {
     background-color: lightgray;
 }
+
 /*Tela de busca*/
-.bodyHomeJogos{
+.bodyHomeJogos {
     background-color: lightgray;
     padding: 20px;
 }
 
-.tituloBusca{
+.tituloBusca {
     font-size: 1.3em;
     font-weight: 600;
 }
 
-.botaoLinks{
+.botaoLinks {
     background-color: #28a745;
     border: none;
     color: white;
@@ -25,7 +26,7 @@
     text-decoration: none;
 }
 
-.botao-voltar{
+.botao-voltar {
     border: none;
     color: white;
     padding: 12px 20px;
@@ -34,17 +35,17 @@
     width: 100%;
     margin-top: 2px;
     transition: background-color 0.3s;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
-.divBotoesBusca{
+.divBotoesBusca {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.card-busca-links{
-  
+.card-busca-links {
+
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
@@ -63,25 +64,30 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
 }
+
 .form-title {
     color: #333;
     margin-bottom: 25px;
     font-weight: 600;
 }
+
 .form-label {
     font-weight: 500;
     color: #333;
     margin-bottom: 8px;
 }
+
 .form-control {
     border: 1px solid #ddd;
     padding: 10px 15px;
     border-radius: 5px;
 }
+
 .form-control:focus {
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
+
 .botao-buscar {
     background-color: #28a745;
     border: none;
@@ -93,13 +99,15 @@
     margin-top: 20px;
     transition: background-color 0.3s;
 }
+
 .botao-buscar:hover {
     background-color: #218838;
 }
+
 /*Fim de tela de busca*/
 
 /*Tela do Jogo*/
-.divHome{
+.divHome {
     margin: 0 auto;
     background-color: whitesmoke;
     border-radius: 10px;
@@ -107,28 +115,30 @@
     padding: 30px;
 }
 
-.divHomeNomeCampo{
+.divHomeNomeCampo {
     margin-top: 40px;
 }
+
 /*Fim da tela do Jogo*/
 
 :root {
-  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+    --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
 }
 
 .card-jogos {
-  background: #40E0D0;
-  border: 1px solid #dd2476;
-  color: black;
-  margin-bottom: 2rem;
-  width: 18rem;
-  border-radius: 10px;
+    background: #40E0D0;
+    border: 1px solid #dd2476;
+    color: black;
+    margin-bottom: 2rem;
+    width: 18rem;
+    border-radius: 10px;
 }
-.card-titulo-jogo{
+
+.card-titulo-jogo {
     text-align: center;
 }
 
-.botao-voltar{
+.botao-voltar {
     text-align: end;
     margin-right: 1px;
     margin-bottom: 1px
@@ -138,10 +148,54 @@
 
 /*Tela de login
 */
-.login-body{
+.login-body {
     background-color: lightgray;
 }
 
-.texto-login{
+.texto-login {
     color: white;
 }
+
+.BotoesCriarUsuario {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.botaoVoltarAdicionar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.botaoAdd {
+    width: 50%;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.divVoltarBuscaJogos {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.carousel-img {
+            width: auto;            /* usa largura original da imagem */
+            max-width: 90%;        /* não ultrapassa 90% da largura da viewport/container */
+            height: auto;
+            max-height: 500px;     /* ajusta conforme quiser para não ficar enorme */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;    /* centraliza a imagem */
+            object-fit: contain;   /* preserva proporção sem corte */
+        }
+
+        @media (max-width: 768px) {
+            .carousel-img { max-height: 280px; max-width: 95%; }
+        }
+        /* opcional: centralizar o conteúdo do item */
+        .carousel-item { text-align: center; }

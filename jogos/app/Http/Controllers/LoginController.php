@@ -22,14 +22,16 @@ class LoginController extends Controller
     public function store(Request $request) {
         
         // dd($request->all());
-
-        $data['name'] = $request->input('name');
-        $data['email'] = $request->input('email');
-        $data['password'] = $request->password;
+        
+        $request->input('name') ? $data['name'] = $request->input('name') : dd('Nome invalido');
+        $request->input('email') ? $data['email'] = $request->input('email') : dd('email invalido');
+        $request->input('password') ? $data['password'] = $request->password : dd('senha invalida');
         $data['idPs'] = $request->idPs;
         $data['idXbox'] = $request->idXbox;
 
         $data['password'] = Hash::make($data['password']);
+
+        dd("Teste");
 
         $user = User::create([
             'name' => $data['name'],

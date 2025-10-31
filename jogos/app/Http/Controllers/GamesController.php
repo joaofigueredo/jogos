@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jogos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -33,7 +34,7 @@ class GamesController extends Controller
                 'grant_type' => 'client_credentials',
             ]);
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             \Log::error('Twitch token request failed', ['status' => $response->status(), 'body' => $response->body()]);
             return null;
         }
@@ -66,28 +67,30 @@ class GamesController extends Controller
             return back()->withErrors(['erro' => 'Nome do jogo inválido.']);
         }
 
-        $query = "search \"{$jogo}\";\nfields name, cover.url, genres.name, platforms.name, summary, similar_games;\nlimit 6;";
+        $query = "search \"{$jogo}\";\nfields name, cover.url, genres.name, platforms.name, summary, similar_games;\nlimit 1;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
             'Authorization' => 'Bearer ' . $this->accessToken,
         ])->withOptions(['verify' => false])
-          ->withBody($query, 'text/plain')
-          ->post('https://api.igdb.com/v4/games');
+            ->withBody($query, 'text/plain')
+            ->post('https://api.igdb.com/v4/games');
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             \Log::error('IGDB /games request failed', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro na busca de jogos.']);
         }
 
-        $jogos = $response->json();
+        $jogo = $response->json();
 
-        if (empty($jogos)) {
+
+
+        if (empty($jogo)) {
             $mensagemErro = " '{$jogo}' não encontrado";
             return to_route('home.jogos')->withErrors(['erro' => $mensagemErro]);
         }
 
-        return view('games.index')->with('jogos', $jogos);
+        return view('games.index')->with('jogo', $jogo);
     }
 
     public function similar()
@@ -110,10 +113,10 @@ class GamesController extends Controller
             'Client-ID' => $this->clientId,
             'Authorization' => 'Bearer ' . $this->accessToken,
         ])->withOptions(['verify' => false])
-          ->withBody($query, 'text/plain')
-          ->post('https://api.igdb.com/v4/games');
+            ->withBody($query, 'text/plain')
+            ->post('https://api.igdb.com/v4/games');
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             \Log::error('IGDB search similar request failed', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro na busca de jogos similares.']);
         }
@@ -129,19 +132,21 @@ class GamesController extends Controller
         $n = rand(0, $count - 1);
         $jogoId = intval($similarGames[$n]);
 
-        // $query2 = "where id = {$jogoId};\nfields name, cover.url, genres.name, platforms.name;\nlimit 1;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
             'Authorization' => 'Bearer ' . $this->accessToken,
         ])->withOptions(['verify' => false])
-          ->withBody("where id = {$jogoId};
+            ->withBody(
+                "where id = {$jogoId};
             fields name, cover.url, genres.name, platforms.name;
             limit 1;"
-            , 'text/plain')
-          ->post('https://api.igdb.com/v4/games');
+                ,
+                'text/plain'
+            )
+            ->post('https://api.igdb.com/v4/games');
 
-        if (! $response->successful()) {
+        if (!$response->successful()) {
             \Log::error('IGDB /games by id failed', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro ao buscar jogo similar.']);
         }
@@ -152,5 +157,26 @@ class GamesController extends Controller
         }
 
         return view('games.jogo-similar')->with('jogo1', $jogo1);
+    }
+
+
+    public function adicionarJogo(Request $request)
+    {
+        // dd($request->cover);
+
+        $jogo = $request->nome;
+        $urlCover = 'https:' .$request->cover;
+
+        // dd($urlCover);
+
+        Jogos::create([
+            'id' => $request->id,
+            'id_jogador' => $request->idJogador,
+            'nome' => $request->nome,
+            'duracao' => 0,
+            'url_imagem' => $request->cover
+        ]);
+
+        return to_route('busca.games')->with('mensagemSucesso', "$jogo adicionado a sua conta!");
     }
 }

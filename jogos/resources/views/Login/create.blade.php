@@ -34,7 +34,8 @@
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline form-white mb-4">
-                                        <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg" />
+                                        <input type="email" name="email" id="typeEmailX"
+                                            class="form-control form-control-lg" />
                                         <label class="form-label texto-login" for="typeEmailX">Email</label>
                                     </div>
 
@@ -53,22 +54,24 @@
                                                 <label class="form-label texto-login" for="idPs">ID Playstation</label>
                                             </div>
                                         </div>
-                            </div>
+                                    </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="password" id="typePasswordX" name="password"
-                                    class="form-control form-control-lg" />
-                                <label class="form-label texto-login" for="typePasswordX">Senha</label>
-                            </div>
+                                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                                        <input type="password" id="typePasswordX" name="password"
+                                            class="form-control form-control-lg" />
+                                        <label class="form-label texto-login" for="typePasswordX">Senha</label>
+                                    </div>
+                                    <div class="BotoesCriarUsuario">
+                                        <a href="{{ route('login.index') }}" class="btn btn-outline-light btn-lg px-5">Voltar</a>
+                                        <button  class="btn btn-outline-light btn-lg px-5" type="submit">Salvar</button>
+                                    </div>
+                                </form>
 
-                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
-                                type="submit">Criar usuário</button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 

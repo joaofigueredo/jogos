@@ -16,12 +16,6 @@ Route::middleware(ValidarLogin::class)->group(function () {
     ->name('buscar.games');
     // rotas protegidas...
 });
-//Rota de inicio
-// Route::get('/home',[HomeController::class, 'index'])
-//     ->middleware('validar.login')    
-//     ->name('home.jogos');
-
-//Rota de busca de jogos
 
 
 //Rota de busca de jogos via post
@@ -64,3 +58,6 @@ Route::get('/perfil', [LoginController::class, 'perfil'])
 
 Route::post('/perfil/update', [loginController::class, 'update'])
     ->name('login.update');
+
+Route::post('/adicionarJogo', [GamesController::class, 'adicionarJogo'])
+    ->name('adicionar');
