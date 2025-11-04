@@ -61,3 +61,9 @@ Route::post('/perfil/update', [loginController::class, 'update'])
 
 Route::post('/adicionarJogo', [GamesController::class, 'adicionarJogo'])
     ->name('adicionar');
+
+Route::get('/listajogos', [GamesController::class, 'listajogos'])
+    ->name('games.listajogos');
+
+Route::delete('/deletarJogo', [GamesController::class, 'destroy'])
+    ->name('games.destroy');

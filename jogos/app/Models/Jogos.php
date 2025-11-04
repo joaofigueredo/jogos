@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jogos extends Model
 {
     protected $fillable = [
-        'id',
+        'id_jogo',
         'nome',
         'duracao',
         'url_imagem',

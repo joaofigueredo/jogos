@@ -31,10 +31,11 @@
                         <div class="botaoVoltarAdicionar" >
                             <form class="botaoAdd" action="{{ route('adicionar') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $jogo[0]['id'] }}">
+                                <input type="hidden" name="id_jogo" value="{{ $jogo[0]['id'] }}">
                                 <input type="hidden" name="nome" value="{{ $jogo[0]['name'] }}">
                                 <input type="hidden" name="cover" value="{{ $jogo[0]['cover']['url'] }}">
                                 <input type="hidden" name="idJogador" value="{{ auth()->user()->id }}">
+
                                 <button class="btn btn-secondary botao-voltar" type="submit">Adicionar</button>
                             </form>
                         </div>

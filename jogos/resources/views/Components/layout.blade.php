@@ -29,7 +29,10 @@
                                 <a class="nav-link" href="{{ route('busca.similares') }}">Similares</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
+                                <a class="nav-link" href="{{ route('games.listajogos') }}">Sua lista</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="">Disabled</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav">

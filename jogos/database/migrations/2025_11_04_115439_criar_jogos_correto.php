@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,11 +12,12 @@ return new class extends Migration
     {
         Schema::create('jogos', function (Blueprint $table) {
             $table->id();
-            $table->id_jogo();
+            $table->integer('id_jogo');
             $table->integer('id_jogador');
             $table->string('nome');
             $table->float('duracao');
             $table->string('url_imagem');
+            $table->timestamps();
         });
     }
 

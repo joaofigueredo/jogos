@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jogos;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -162,7 +163,7 @@ class GamesController extends Controller
 
     public function adicionarJogo(Request $request)
     {
-        // dd($request->cover);
+        // dd($request->all());
 
         $jogo = $request->nome;
         $urlCover = 'https:' .$request->cover;
@@ -170,13 +171,29 @@ class GamesController extends Controller
         // dd($urlCover);
 
         Jogos::create([
-            'id' => $request->id,
+            'id_jogo' => $request->id_jogo,
             'id_jogador' => $request->idJogador,
             'nome' => $request->nome,
             'duracao' => 0,
             'url_imagem' => $request->cover
         ]);
 
-        return to_route('busca.games')->with('mensagemSucesso', "$jogo adicionado a sua conta!");
+        return to_route('games.listajogos')->with('mensagemSucesso', "$jogo adicionado a sua conta!");
+    }
+
+    public function listajogos(){
+        $jogos = DB::table('jogos')->get();
+
+        // dd($jogos->isEmpty());
+
+        return view('games.listajogos')->with('jogos', $jogos);
+    }
+
+    public function destroy(Request $request) {
+        // dd($request->all());
+
+        Jogos::where('id', '=', $request->id)->delete();
+
+        return to_route('games.listajogos')->with('mensagemSucesso', "Jogo removido com sucesso!");
     }
 }
