@@ -17,7 +17,7 @@ class GamesController extends Controller
     {
         $this->clientId = env('IGDB_CLIENT_ID');
         $this->clientSecret = env('IGDB_CLIENT_SECRET');
-        $this->accessToken = null; // buscar token quando necessário
+        $this->accessToken = null;
     }
 
     private function getAccessToken()
@@ -85,13 +85,14 @@ class GamesController extends Controller
         $jogo = $response->json();
 
 
-
         if (empty($jogo)) {
             $mensagemErro = " '{$jogo}' não encontrado";
-            return to_route('home.jogos')->withErrors(['erro' => $mensagemErro]);
+            return to_route('home.jogos')
+                ->withErrors(['erro' => $mensagemErro]);
         }
 
-        return view('games.index')->with('jogo', $jogo);
+        return view('games.index')
+            ->with('jogo', $jogo);
     }
 
     public function similar()
@@ -103,10 +104,7 @@ class GamesController extends Controller
     {
         $this->ensureAccessToken();
 
-        $nome = $request->input('nome', '');
-        if (trim($nome) === '') {
-            return back()->withErrors(['erro' => 'Nome do jogo inválido.']);
-        }
+        $nome = $request->nome;
 
         $query = "search \"{$nome}\";\nfields name, similar_games;\nlimit 6;";
 
@@ -154,21 +152,18 @@ class GamesController extends Controller
 
         $jogo1 = $response->json();
         if (empty($jogo1)) {
-            return to_route('games.similar')->withErrors(['erro' => 'Jogo similar não encontrado.']);
+            return to_route('games.similar')
+                ->withErrors(['erro' => 'Jogo similar não encontrado.']);
         }
 
-        return view('games.jogo-similar')->with('jogo1', $jogo1);
+        return view('games.jogo-similar')
+            ->with('jogo1', $jogo1);
     }
 
 
     public function adicionarJogo(Request $request)
     {
-        // dd($request->all());
-
         $jogo = $request->nome;
-        $urlCover = 'https:' .$request->cover;
-
-        // dd($urlCover);
 
         Jogos::create([
             'id_jogo' => $request->id_jogo,
@@ -178,22 +173,22 @@ class GamesController extends Controller
             'url_imagem' => $request->cover
         ]);
 
-        return to_route('games.listajogos')->with('mensagemSucesso', "$jogo adicionado a sua conta!");
+        return to_route('games.listajogos')
+            ->with('mensagemSucesso', "$jogo adicionado a sua conta!");
     }
 
     public function listajogos(){
         $jogos = DB::table('jogos')->get();
 
-        // dd($jogos->isEmpty());
-
-        return view('games.listajogos')->with('jogos', $jogos);
+        return view('games.listajogos')
+            ->with('jogos', $jogos);
     }
 
     public function destroy(Request $request) {
-        // dd($request->all());
+        Jogos::where('id', '=', $request->id)
+            ->delete();
 
-        Jogos::where('id', '=', $request->id)->delete();
-
-        return to_route('games.listajogos')->with('mensagemSucesso', "Jogo removido com sucesso!");
+        return to_route('games.listajogos')
+            ->with('mensagemSucesso', "Jogo removido com sucesso!");
     }
 }

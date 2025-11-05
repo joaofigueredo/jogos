@@ -63,7 +63,6 @@
                         @if($jogos->isEmpty())
                         <h3 class="testoSemJogos">Nenhum jogo na sua lista!</h3>
                         @endif
-                       
                     </div>
                 </div>
             </div>

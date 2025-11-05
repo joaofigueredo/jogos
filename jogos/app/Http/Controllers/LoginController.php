@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    //
 
     public function index() {
         return view("login.index");
@@ -20,9 +19,7 @@ class LoginController extends Controller
     }
 
     public function store(Request $request) {
-        
-        // dd($request->all());
-        
+
         $request->input('name') ? $data['name'] = $request->input('name') : dd('Nome invalido');
         $request->input('email') ? $data['email'] = $request->input('email') : dd('email invalido');
         $request->input('password') ? $data['password'] = $request->password : dd('senha invalida');
@@ -30,8 +27,6 @@ class LoginController extends Controller
         $data['idXbox'] = $request->idXbox;
 
         $data['password'] = Hash::make($data['password']);
-
-        dd("Teste");
 
         $user = User::create([
             'name' => $data['name'],
@@ -48,13 +43,13 @@ class LoginController extends Controller
 
     public function login(Request $request){
         $login = $request->only('email', 'password');
-        // dd($request->all());
         
         if(Auth::attempt($login)){
             $request->session()->regenerate();
             $usuario = Auth::user();
-            // dd($usuario);
-            return to_route('buscar.games')->with('mensagemSucesso', "Olá, $usuario->name!");
+
+            return to_route('buscar.games')
+                ->with('mensagemSucesso', "Olá, $usuario->name!");
         }
 
         return to_route('login.index')->withErrors([
@@ -85,6 +80,8 @@ class LoginController extends Controller
             ]);
         
         $mensagemSucesso = "Perfil atualizado com sucesso!";
-        return to_route("login.perfil")->with('mensagemSucesso', $mensagemSucesso);
+
+        return to_route("login.perfil")
+            ->with('mensagemSucesso', $mensagemSucesso);
     }
 }

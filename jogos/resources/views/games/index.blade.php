@@ -27,7 +27,7 @@
                             @endif
 
                         </ul>
-
+                        @if(!empty($jogo[0]['cover']['url']))
                         <div class="botaoVoltarAdicionar" >
                             <form class="botaoAdd" action="{{ route('adicionar') }}" method="POST">
                                 @csrf
@@ -39,6 +39,9 @@
                                 <button class="btn btn-secondary botao-voltar" type="submit">Adicionar</button>
                             </form>
                         </div>
+                        @else
+                        <p>Impossivel adicionar por falta de informações</p>
+                        @endif
                     </div>
                 </div>
             </div>
