@@ -19,7 +19,6 @@ class HomeController extends Controller
             return view('home.index');
         }
 
-        return view('home.index')
-            ->with('ultimo', $ultimo);
+        return view('home.index')->with('ultimo', $ultimo);
     }
 }
