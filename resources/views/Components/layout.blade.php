@@ -31,15 +31,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('games.listajogos') }}">Sua lista</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="">Buscar</a>
-                            </li>
 
                             <li class="nav-item">
                                 <form action="{{ route('games.buscar') }}" method="POST">
                                     @csrf
                                     <input type="text" id="nome" name="nome">
-                                    <button type="submit">buscar</button>
+                                    <button type="submit" class="btn btn-info">buscar</button>
                                 </form>
                             </li>
                         </ul>

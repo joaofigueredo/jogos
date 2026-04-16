@@ -45,12 +45,33 @@
                                                     <button class="botaoSalvarJogo" type="submit"><i class="bi bi-lightbulb-fill" ></i></button>
                                                 </li>
                                                 </form>
-                                                <form action="{{ route('games.destroy') }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="id" value="{{ $jogo->id }}">
-                                                    <li><button class="botaoSalvarJogo" type="submit"><i class="bi bi-trash3"></i></button></li>
-                                                </form>
+                                                 <li><button class="botaoSalvarJogo"  type="button" data-bs-toggle="modal" data-bs-target="#apagarJogo"><i class="bi bi-trash3"></i></button></li>
+                                                
+                                                <!-- modal -->
+                                                 <div class="modal fade" id="apagarJogo" tabindex="-1">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Confirmação</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Tem certeza que deseja excluir?   
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                                                <form action="{{ route('games.destroy') }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <input type="hidden" name="id" value="{{ $jogo->id }}">
+                                                                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                 </div>
+
                                             </ul>
                                         </td>
                                     </tr>

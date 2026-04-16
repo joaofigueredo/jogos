@@ -44,7 +44,7 @@
       <div class="card-body text-center">
         <h4 class="card-title font-weight-bold">{{ $ultimo->nome }}</h4>
         <hr>
-        <p><i class="fas fa-quote-left"></i> Último jogo finalizado!</p>
+        <i class="fas fa-quote-left"></i> Último jogo finalizado!
       </div>
     </div>
     

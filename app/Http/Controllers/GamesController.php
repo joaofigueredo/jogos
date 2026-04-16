@@ -107,7 +107,9 @@ class GamesController extends Controller
 
         $nome = $request->nome;
 
-        $query = "search \"{$nome}\";\nfields name, similar_games;\nlimit 6;";
+        
+
+        $query = "search \"*{$nome}*\";\nfields name, similar_games;\nlimit 2;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -115,6 +117,8 @@ class GamesController extends Controller
         ])->withOptions(['verify' => false])
             ->withBody($query, 'text/plain')
             ->post('https://api.igdb.com/v4/games');
+
+            
 
         if (!$response->successful()) {
             \Log::error('IGDB search similar request failed', ['status' => $response->status(), 'body' => $response->body()]);
@@ -127,11 +131,12 @@ class GamesController extends Controller
             return to_route('games.similar')->withErrors(['erro' => $mensagemErro]);
         }
 
-        $similarGames = $nomeJogo[0]['similar_games'];
-        $count = count($similarGames);
+        $jogosimilar = $nomeJogo[0]['similar_games'];
+        
+        $count = count($jogosimilar);
         $n = rand(0, $count - 1);
-        $jogoId = intval($similarGames[$n]);
-
+        $jogoId = intval($jogosimilar[$n]);
+        
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -140,7 +145,7 @@ class GamesController extends Controller
             ->withBody(
                 "where id = {$jogoId};
             fields name, cover.url, genres.name, platforms.name;
-            limit ;"
+            limit 1;"
                 ,
                 'text/plain'
             )
@@ -150,6 +155,7 @@ class GamesController extends Controller
             \Log::error('IGDB /games by id failed', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro ao buscar jogo similar.']);
         }
+        
 
         $jogo1 = $response->json();
         if (empty($jogo1)) {
