@@ -14,83 +14,90 @@
 
 </head>
 
-<body class="body">
+<body class="d-flex flex-column min-vh-100 body">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 @if (Auth::check())
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home.jogos') }}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('buscar.games') }}">Jogos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('busca.similares') }}">Similares</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('games.listajogos') }}">Sua lista</a>
-                            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('home.jogos') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('buscar.games') }}">Jogos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('busca.similares') }}">Similares</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('games.listajogos') }}">Sua lista</a>
+                </li>
 
-                            <li class="nav-item">
-                                <form action="{{ route('games.buscar') }}" method="POST">
+                <li class="nav-item">
+                    <form action="{{ route('games.buscar') }}" method="POST">
+                        @csrf
+                        <input type="text" id="nome" name="nome">
+                        <button type="submit" class="btn btn-info">buscar</button>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle fst-italic"> {{Auth::user()->name}}</i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('login.perfil') }}"><i
+                                    class="bi bi-person"></i>Perfil</a></li>
+                        <li>
+                            <div class="d-flexjustify-content-end">
+                                <form method="POST" action="{{ route('login.logout') }}">
                                     @csrf
-                                    <input type="text" id="nome" name="nome">
-                                    <button type="submit" class="btn btn-info">buscar</button>
-                                </form>
-                            </li>
-                        </ul>
-
-                         <ul class="navbar-nav">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-person-circle"> perfil</i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('login.perfil') }}"><i
-                                                class="bi bi-person"></i>Perfil</a></li>
-                                    <li>
-                                        <div class="d-flexjustify-content-end">
-                                            <form method="POST" action="{{ route('login.logout') }}">
-                                                @csrf
-                                    <li class="nav-item">
-                                        <button class="nav-link"><i class="bi bi-arrow-bar-right"> Sair</i></button>
-                                    </li>
-                                    </form>
-                            </div>
-                            </li>
-                        </ul>
-                    @endif
-        @if(!Auth::check())
+                        <li class="nav-item">
+                            <button class="nav-link"><i class="bi bi-arrow-bar-right"> Sair</i></button>
+                        </li>
+                        </form>
+                </div>
+                </li>
+            </ul>
+            @endif
+            @if(!Auth::check())
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login.index') }}">Login</a>
                 </li>
             </ul>
-        @endif
+            @endif
         </div>
     </nav>
     @if(session('mensagemSucesso'))
-        <div class="alert alert-success" id="mensagem">
-            <p>{{ session('mensagemSucesso') }}</p>
-        </div>
+    <div class="alert alert-success" id="mensagem">
+        <p>{{ session('mensagemSucesso') }}</p>
+    </div>
     @endif
     @if($errors->any())
-        <div class="alert alert-danger" id="mensagem">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+    <div class="alert alert-danger" id="mensagem">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     @endif
     <script>
-        setTimeout(function () {
+        setTimeout(function() {
             document.getElementById('mensagem').style.display = 'none';
         }, 5000);
     </script>
-
-    {{ $slot }}
+    <main class="flex-grow-1">
+        {{ $slot }}
+    </main>
+    <footer class="bg-body-tertiary text-center text-lg-start mt-auto">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2026 Copyright:
+            <a class="text-body" href="https://github.com/joaofigueredo" target="_blank">João Carlos</a>
+        </div>
+    </footer>
 </body>
 
 </html>

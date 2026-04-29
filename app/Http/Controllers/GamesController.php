@@ -107,7 +107,7 @@ class GamesController extends Controller
 
         $nome = $request->nome;
 
-        
+
 
         $query = "search \"*{$nome}*\";\nfields name, similar_games;\nlimit 2;";
 
@@ -118,7 +118,7 @@ class GamesController extends Controller
             ->withBody($query, 'text/plain')
             ->post('https://api.igdb.com/v4/games');
 
-            
+
 
         if (!$response->successful()) {
             \Log::error('IGDB search similar request failed', ['status' => $response->status(), 'body' => $response->body()]);
@@ -132,11 +132,11 @@ class GamesController extends Controller
         }
 
         $jogosimilar = $nomeJogo[0]['similar_games'];
-        
+
         $count = count($jogosimilar);
         $n = rand(0, $count - 1);
         $jogoId = intval($jogosimilar[$n]);
-        
+
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -145,8 +145,7 @@ class GamesController extends Controller
             ->withBody(
                 "where id = {$jogoId};
             fields name, cover.url, genres.name, platforms.name;
-            limit 1;"
-                ,
+            limit 1;",
                 'text/plain'
             )
             ->post('https://api.igdb.com/v4/games');
@@ -155,7 +154,7 @@ class GamesController extends Controller
             \Log::error('IGDB /games by id failed', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro ao buscar jogo similar.']);
         }
-        
+
 
         $jogo1 = $response->json();
         if (empty($jogo1)) {
@@ -171,43 +170,52 @@ class GamesController extends Controller
     public function adicionarJogo(Request $request)
     {
         $jogo = $request->nome;
+        // dd($request->critica);
 
-        Jogos::create([
+
+        $jogoCriado = Jogos::create([
             'id_jogo' => $request->id_jogo,
             'id_jogador' => $request->idJogador,
             'nome' => $request->nome,
             'duracao' => 0,
-            'url_imagem' => $request->cover
+            'url_imagem' => $request->cover,
+            'critica' => $request->critica
         ]);
+
+        // dd($jogoCriado);
 
         return to_route('games.listajogos')
             ->with('mensagemSucesso', "$jogo adicionado a sua conta!");
     }
 
-    public function listajogos(){
+    public function listajogos()
+    {
         $jogos = DB::table('jogos')->get();
 
         return view('games.listajogos')
             ->with('jogos', $jogos);
     }
 
-    public function destroy(Request $request) {
-        Jogos::where('id', '=', $request->id)
+    public function destroy(Request $request)
+    {
+        // dd($request->all());
+        $jogo = Jogos::where('id', '=', $request->id)
             ->delete();
+
+        // dd($jogo);
+
 
         return to_route('games.listajogos')
             ->with('mensagemSucesso', "Jogo removido com sucesso!");
     }
 
-    public function buscar(Request $request) {
-        // dd();
+    public function buscar(Request $request)
+    {
+        // dd($request->id);
         $buscar = $request->nome;
         $jogo = Jogos::where('nome', 'ILIKE', "%$buscar%")->get();
-        // dd($resultado);
+        // dd($jogo);
 
         return view('games.show')->with('jogo', $jogo);
-        
     }
-
-    
 }

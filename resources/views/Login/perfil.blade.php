@@ -50,9 +50,32 @@
                                                     href="{{ route('home.jogos') }}">Cancelar</a>
                                             </div>
                                             <div class="col-6">
-                                                <button data-mdb-button-init data-mdb-ripple-init
-                                                    class="btn btn-outline-light btn-lg px-5"
-                                                    type="submit">Salvar</button>
+                                                <button class="btn btn-outline-light btn-lg px-5" type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#attPerfil"
+                                                    type="button">Salvar</button>
+                                            </div>
+                                            <!-- modal -->
+                                            <div class="modal fade" id="attPerfil" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title textoModal">Confirmação</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="textoModal">Tem certeza que deseja Salvar as novas
+                                                                informações?</p>
+
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Cancelar</button>
+                                                            <button class="btn btn-primary"
+                                                                type="submit">Salvar</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </form>

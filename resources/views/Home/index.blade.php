@@ -33,27 +33,31 @@
     </div>
 
     <div class="container">
-  <section class="mx-auto my-5" style="max-width: 23rem;">
-      
-    <div class="card testimonial-card mt-2 mb-3">
-      <div class="card-up aqua-gradient"></div>
-      <div class="avatar mx-auto white">
-        <img src="{{ $ultimo->url_imagem }}" class="rounded-circle img-fluid"
-          alt="imagem de {{ $ultimo->nome }}">
-      </div>
-      <div class="card-body text-center">
-        <h4 class="card-title font-weight-bold">{{ $ultimo->nome }}</h4>
-        <hr>
-        <i class="fas fa-quote-left"></i> Último jogo finalizado!
-      </div>
+        @isset($ultimo)
+        <section class="mx-auto my-5" style="max-width: 23rem;">
+
+            <div class="card testimonial-card mt-2 mb-3">
+                <div class="card-up aqua-gradient"></div>
+                <div class="avatar mx-auto white">
+                    <img src="{{ $ultimo->url_imagem }}" class="rounded-circle img-fluid"
+                        alt="imagem de {{ $ultimo->nome }}">
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title font-weight-bold">{{ $ultimo->nome }}</h4>
+                    <hr>
+                    <i class="fas fa-quote-left"></i> Último jogo finalizado!
+                </div>
+            </div>
+
+            @else
+
+            @endisset
+
+        </section>
     </div>
-    
-  </section>
-</div>
 </x-layout>
 
 <!-- @vite('resources/js/app.js')
 <x-layout title="documento">    
   <div id="app"></div>
 </x-layout> -->
-
