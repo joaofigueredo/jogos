@@ -1,5 +1,5 @@
 <x-layout title="Show">
-
+    @isset($jogo[0])
     <div class="container">
         <section class="mx-auto my-5" style="max-width: 23rem;">
             <div class="card testimonial-card mt-2 mb-3">
@@ -15,4 +15,7 @@
                     <p><i class="bi bi-textarea-t"></i> {{ $jogo[0]->critica }}</p>
                 </div>
             </div>
+            @else
+            <h3 class="text-center mt-2">Nenhum jogo encontrado!</h3>
+            @endisset
 </x-layout>

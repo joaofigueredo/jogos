@@ -7,6 +7,8 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+use function PHPUnit\Framework\isNull;
+
 class GamesController extends Controller
 {
     private $clientId;
@@ -68,7 +70,7 @@ class GamesController extends Controller
             return back()->withErrors(['erro' => 'Nome do jogo inválido.']);
         }
 
-        $query = "search \"{$jogo}\";\nfields cover.url, name, genres.name, platforms.name, summary, similar_games;\nlimit 3;";
+        $query = "search \"{$jogo}\";\nfields cover.url, name, genres.name, platforms.name, summary, similar_games, language_supports.language, language_supports.language_support_type;\nlimit 3;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -82,14 +84,17 @@ class GamesController extends Controller
             return back()->withErrors(['erro' => 'Erro na busca de jogos.']);
         }
 
-        $jogos = $response->json();
 
+
+        $jogos = $response->json();
 
         if (empty($jogos)) {
             $mensagemErro = " '{$jogos}' não encontrado";
             return to_route('home.jogos')
                 ->withErrors(['erro' => $mensagemErro]);
         }
+
+
 
         // dd($jogos[1]['name']);
         return view('games.index')
@@ -211,9 +216,22 @@ class GamesController extends Controller
 
     public function buscar(Request $request)
     {
-        // dd($request->id);
         $buscar = $request->nome;
-        $jogo = Jogos::where('nome', 'ILIKE', "%$buscar%")->get();
+        // dd($buscar);
+        if ($request->nome === null) {
+            $jogo = null;
+        } else {
+            $jogo = Jogos::where('nome', 'ILIKE', "%$buscar%")->get();
+        }
+
+        return view('games.show')->with('jogo', $jogo);
+    }
+
+    public function show(Request $request)
+    {
+        $id = $request->id;
+        // dd($id);
+        $jogo = Jogos::where('id', '=', $id)->get();
         // dd($jogo);
 
         return view('games.show')->with('jogo', $jogo);

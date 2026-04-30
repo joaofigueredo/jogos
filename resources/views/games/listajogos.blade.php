@@ -28,7 +28,10 @@
                                         <div class="jogo-list-details">
                                             <div class="jogo-list-info">
                                                 <div class="jogo-list-title">
-                                                    <h5 class="mb-0">{{ $jogo->nome }}</h5>
+                                                    <a class="linkJogo"
+                                                        href="{{ route('games.show', ['id' => $jogo->id]) }}">
+                                                        <h5 class="mb-0">{{ $jogo->nome }}</h5>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,7 +64,7 @@
                                                             <h5 class="modal-title">Confirmação</h5>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Tem certeza que deseja excluir?
+                                                            Tem certeza que deseja excluir {{ $jogo->nome }}?
                                                         </div>
 
                                                         <div class="modal-footer">
@@ -88,7 +91,7 @@
                             <tfoot>
                                 <tr>
                                     <td class="textoTotal">Total</td>
-                                    <td class="numeroTotal" colspan="6">{{ $total }}</td>
+                                    <td class="numeroTotal text-center" colspan="6">{{ $total }}</td>
                                 </tr>
                             </tfoot>
                         </table>

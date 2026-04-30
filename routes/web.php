@@ -11,9 +11,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(ValidarLogin::class)->group(function () {
-    Route::get('/home',[HomeController::class, 'index'])->name('home.jogos');
+    Route::get('/home', [HomeController::class, 'index'])->name('home.jogos');
     Route::get('/busca', [GamesController::class, 'busca'])
-    ->name('buscar.games');
+        ->name('buscar.games');
     // rotas protegidas...
 });
 
@@ -35,16 +35,16 @@ Route::get('/jogo-similar', [GamesController::class, 'buscarSimilares'])
     ->name('games.jogo.similar');
 
 //Rota de login
-Route::get('/login',[LoginController::class,'index'])
+Route::get('/login', [LoginController::class, 'index'])
     ->name('login.index');
 
 //Rota de criação de usu
-Route::get('/create',[LoginController::class, 'create'])
+Route::get('/create', [LoginController::class, 'create'])
     ->name('login.create');
 
 //Rota post de criar usuario
 Route::post('/create', [LoginController::class, 'store'])
-    ->name('login.store');  
+    ->name('login.store');
 
 Route::post('/login', [LoginController::class, 'login'])
     ->name('login.login');
@@ -73,5 +73,5 @@ Route::post('/buscarjogo', [GamesController::class, 'buscar'])
 
 
 
-Route::get('/show', [GamesController::class, 'show'])
+Route::get('/show/{id}', [GamesController::class, 'show'])
     ->name('games.show');

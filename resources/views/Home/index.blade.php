@@ -56,8 +56,3 @@
         </section>
     </div>
 </x-layout>
-
-<!-- @vite('resources/js/app.js')
-<x-layout title="documento">    
-  <div id="app"></div>
-</x-layout> -->
