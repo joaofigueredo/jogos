@@ -75,3 +75,6 @@ Route::post('/buscarjogo', [GamesController::class, 'buscar'])
 
 Route::get('/show/{id}', [GamesController::class, 'show'])
     ->name('games.show');
+
+Route::get('/estatisticas', [GamesController::class, 'estatisticas'])
+    ->name('games.estatisticas');

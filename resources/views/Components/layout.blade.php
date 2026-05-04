@@ -26,10 +26,11 @@
                     <a class="nav-link" href="{{ route('buscar.games') }}">Jogos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('busca.similares') }}">Similares</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('games.listajogos') }}">Sua lista</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('games.estatisticas') }}">Estatisticas</a>
                 </li>
 
                 <li class="nav-item">

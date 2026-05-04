@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jogos;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -235,5 +236,20 @@ class GamesController extends Controller
         // dd($jogo);
 
         return view('games.show')->with('jogo', $jogo);
+    }
+
+
+    public function estatisticas()
+    {
+        $lista = Jogos::all();
+        $jogos = Jogos::all()->groupBy(function ($item) {
+            return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
+        });
+
+        // dd($jogos);
+
+        return view('games.estatisticas')
+            ->with('jogos', $jogos)
+            ->with('lista', $lista);
     }
 }
