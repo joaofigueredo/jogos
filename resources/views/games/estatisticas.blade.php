@@ -19,7 +19,8 @@
                 <div class="card-body text-center">
                     <h4 class="card-title font-weight-bold">{{ $jogo->nome }}</h4>
                     <hr>
-                    <i class="fas fa-quote-left"></i> Último jogo finalizado!
+                    <i class="fas fa-quote-left"></i> Finalizado em:
+                    {{ $jogo->created_at->locale('pt_BR')->translatedFormat('d F') }}
                 </div>
             </div>
         </div>
