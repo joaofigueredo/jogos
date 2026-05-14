@@ -246,10 +246,15 @@ class GamesController extends Controller
             return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
         });
 
-        // dd($jogos);
+        $labels = $jogos->keys();
+        $valores = $jogos->map(fn($item) => $item->count())->values();
+
+        // dd($valores);
 
         return view('games.estatisticas')
             ->with('jogos', $jogos)
-            ->with('lista', $lista);
+            ->with('lista', $lista)
+            ->with('labels', $labels)
+            ->with('valores', $valores);
     }
 }

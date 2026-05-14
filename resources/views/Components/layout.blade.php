@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     @vite('resources/js/app.js')
     <link rel="icon" href="{{ asset('images/controle-de-video-game.png') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
