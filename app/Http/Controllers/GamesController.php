@@ -71,7 +71,7 @@ class GamesController extends Controller
             return back()->withErrors(['erro' => 'Nome do jogo inválido.']);
         }
 
-        $query = "search \"{$jogo}\";\nfields cover.url, name, genres.name, platforms.name, summary, similar_games, language_supports.language, language_supports.language_support_type;\nlimit 3;";
+        $query = "search \"{$jogo}\";\nfields cover.url, name, genres.name, genres,platforms.name, summary, similar_games, language_supports.language, language_supports.language_support_type;\nlimit 3;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -97,7 +97,7 @@ class GamesController extends Controller
 
 
 
-        // dd($jogos[1]['name']);
+        // dd($jogos[0]['genres'][0]['name']);
         return view('games.index')
             ->with('jogos', $jogos);
     }
@@ -112,8 +112,6 @@ class GamesController extends Controller
         $this->ensureAccessToken();
 
         $nome = $request->nome;
-
-
 
         $query = "search \"*{$nome}*\";\nfields name, similar_games;\nlimit 2;";
 
@@ -246,10 +244,9 @@ class GamesController extends Controller
             return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
         });
 
+
         $labels = $jogos->keys();
         $valores = $jogos->map(fn($item) => $item->count())->values();
-
-        // dd($valores);
 
         return view('games.estatisticas')
             ->with('jogos', $jogos)
