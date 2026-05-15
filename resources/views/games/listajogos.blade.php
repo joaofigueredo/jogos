@@ -1,6 +1,6 @@
 <x-layout title="Seus jogos">
     <div class="container mt-3 mb-4 div-central-jogos">
-        <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="col-lg-9 mt-4 mt-lg-0 rounded">
             <div class="row ">
                 <div class="col-md-12 ">
                     <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">

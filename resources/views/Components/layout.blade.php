@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     @vite('resources/js/app.js')
     <link rel="icon" href="{{ asset('images/controle-de-video-game.png') }}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </head>
 
 <body class="d-flex flex-column min-vh-100 body">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
@@ -87,12 +88,13 @@
     </div>
     @endif
     <script>
-        setTimeout(function() {
-            document.getElementById('mensagem').style.display = 'none';
-        }, 5000);
+    setTimeout(function() {
+        document.getElementById('mensagem').style.display = 'none';
+    }, 5000);
     </script>
     <main class="flex-grow-1">
         {{ $slot }}
+        @stack('scripts')
     </main>
     <footer class="bg-body-tertiary text-center text-lg-start mt-auto">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
