@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jogos;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+
+use function PHPUnit\Framework\isNull;
 
 class GamesController extends Controller
 {
@@ -48,7 +51,6 @@ class GamesController extends Controller
     {
         if (empty($this->accessToken)) {
             $this->accessToken = $this->getAccessToken();
-            // dd($this->getAccessToken());
             if (empty($this->accessToken)) {
                 abort(500, 'Não foi possível obter access_token IGDB/Twitch. Verifique IGDB_CLIENT_ID/IGDB_CLIENT_SECRET.');
             }
@@ -62,16 +64,14 @@ class GamesController extends Controller
 
     public function buscarGames(Request $request)
     {
-        // dd($request->nome);    
         $this->ensureAccessToken();
 
-        $jogo = $request->nome;
-        // dd($jogo);
+        $jogo = $request->input('nome', '');
         if (trim($jogo) === '') {
             return back()->withErrors(['erro' => 'Nome do jogo inválido.']);
         }
 
-        $query = "search \"{$jogo}\";\nfields name, cover.url, genres.name, platforms.name, summary, similar_games;\nlimit 1;";
+        $query = "search \"{$jogo}\";\nfields cover.url, name, genres.name, platforms.name, summary, similar_games, language_supports.language, language_supports.language_support_type;\nlimit 3;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -85,17 +85,21 @@ class GamesController extends Controller
             return back()->withErrors(['erro' => 'Erro na busca de jogos.']);
         }
 
-        $jogo = $response->json();
 
 
-        if (empty($jogo)) {
-            $mensagemErro = " '{$jogo}' não encontrado";
+        $jogos = $response->json();
+
+        if (empty($jogos)) {
+            $mensagemErro = " '{$jogos}' não encontrado";
             return to_route('home.jogos')
                 ->withErrors(['erro' => $mensagemErro]);
         }
 
+
+
+        // dd($jogos[1]['name']);
         return view('games.index')
-            ->with('jogo', $jogo);
+            ->with('jogos', $jogos);
     }
 
     public function similar()
@@ -109,7 +113,9 @@ class GamesController extends Controller
 
         $nome = $request->nome;
 
-        $query = "search \"{$nome}\";\nfields name, similar_games;\nlimit 6;";
+
+
+        $query = "search \"*{$nome}*\";\nfields name, similar_games;\nlimit 2;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -117,6 +123,8 @@ class GamesController extends Controller
         ])->withOptions(['verify' => false])
             ->withBody($query, 'text/plain')
             ->post('https://api.igdb.com/v4/games');
+
+
 
         if (!$response->successful()) {
             \Log::error('IGDB search similar request failed', ['status' => $response->status(), 'body' => $response->body()]);
@@ -129,10 +137,11 @@ class GamesController extends Controller
             return to_route('games.similar')->withErrors(['erro' => $mensagemErro]);
         }
 
-        $similarGames = $nomeJogo[0]['similar_games'];
-        $count = count($similarGames);
+        $jogosimilar = $nomeJogo[0]['similar_games'];
+
+        $count = count($jogosimilar);
         $n = rand(0, $count - 1);
-        $jogoId = intval($similarGames[$n]);
+        $jogoId = intval($jogosimilar[$n]);
 
 
         $response = Http::withHeaders([
@@ -142,8 +151,7 @@ class GamesController extends Controller
             ->withBody(
                 "where id = {$jogoId};
             fields name, cover.url, genres.name, platforms.name;
-            limit 1;"
-                ,
+            limit 1;",
                 'text/plain'
             )
             ->post('https://api.igdb.com/v4/games');
@@ -152,6 +160,7 @@ class GamesController extends Controller
             \Log::error('IGDB /games by id failed', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro ao buscar jogo similar.']);
         }
+
 
         $jogo1 = $response->json();
         if (empty($jogo1)) {
@@ -167,31 +176,85 @@ class GamesController extends Controller
     public function adicionarJogo(Request $request)
     {
         $jogo = $request->nome;
+        // dd($request->critica);
 
-        Jogos::create([
+
+        $jogoCriado = Jogos::create([
             'id_jogo' => $request->id_jogo,
             'id_jogador' => $request->idJogador,
             'nome' => $request->nome,
             'duracao' => 0,
-            'url_imagem' => $request->cover
+            'url_imagem' => $request->cover,
+            'critica' => $request->critica
         ]);
+
+        // dd($jogoCriado);
 
         return to_route('games.listajogos')
             ->with('mensagemSucesso', "$jogo adicionado a sua conta!");
     }
 
-    public function listajogos(){
+    public function listajogos()
+    {
         $jogos = DB::table('jogos')->get();
 
         return view('games.listajogos')
             ->with('jogos', $jogos);
     }
 
-    public function destroy(Request $request) {
-        Jogos::where('id', '=', $request->id)
+    public function destroy(Request $request)
+    {
+        // dd($request->all());
+        $jogo = Jogos::where('id', '=', $request->id)
             ->delete();
+
+        // dd($jogo);
+
 
         return to_route('games.listajogos')
             ->with('mensagemSucesso', "Jogo removido com sucesso!");
+    }
+
+    public function buscar(Request $request)
+    {
+        $buscar = $request->nome;
+        // dd($buscar);
+        if ($request->nome === null) {
+            $jogo = null;
+        } else {
+            $jogo = Jogos::where('nome', 'ILIKE', "%$buscar%")->get();
+        }
+
+        return view('games.show')->with('jogo', $jogo);
+    }
+
+    public function show(Request $request)
+    {
+        $id = $request->id;
+        // dd($id);
+        $jogo = Jogos::where('id', '=', $id)->get();
+        // dd($jogo);
+
+        return view('games.show')->with('jogo', $jogo);
+    }
+
+
+    public function estatisticas()
+    {
+        $lista = Jogos::all();
+        $jogos = Jogos::all()->groupBy(function ($item) {
+            return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
+        });
+
+        $labels = $jogos->keys();
+        $valores = $jogos->map(fn($item) => $item->count())->values();
+
+        // dd($valores);
+
+        return view('games.estatisticas')
+            ->with('jogos', $jogos)
+            ->with('lista', $lista)
+            ->with('labels', $labels)
+            ->with('valores', $valores);
     }
 }

@@ -1,7 +1,5 @@
-<x-layout title="{{ $jogo[0]['name'] }}">
-    <div class="divVoltarBuscaJogos">
-        <a href="{{ route('buscar.games') }}" class="btn btn-secondary voltarBuscaJogos">Voltar</a>
-    </div>
+<x-layout title="Inicio">
+    
     <div class="container mx-auto mt-4">
         <div class="row">
             <div class="col-md-4">
@@ -46,5 +44,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="divVoltarBuscaJogos">
+        <a href="{{ route('buscar.games') }}" class="btn btn-secondary voltarBuscaJogos">Voltar</a>
     </div>
 </x-layout>

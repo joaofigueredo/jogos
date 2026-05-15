@@ -1,5 +1,4 @@
 <x-layout title="Jogos">
-@isset($ultimo)
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -33,26 +32,26 @@
     </div>
 
     <div class="container">
-  <section class="mx-auto my-5" style="max-width: 23rem;">
-      
-    <div class="card testimonial-card mt-2 mb-3">
-      <div class="card-up aqua-gradient"></div>
-      <div class="avatar mx-auto white">
-        <img src="{{ $ultimo->url_imagem }}" class="rounded-circle img-fluid"
-          alt="woman avatar">
-      </div>
-      <div class="card-body text-center">
-        <h4 class="card-title font-weight-bold">{{ $ultimo->nome }}</h4>
-        <hr>
-        <p><i class="fas fa-quote-left"></i> Último jogo finalizado!</p>
-      </div>
+        @isset($ultimo)
+        <section class="mx-auto my-5" style="max-width: 23rem;">
+
+            <div class="card testimonial-card mt-2 mb-3">
+                <div class="card-up aqua-gradient"></div>
+                <div class="avatar mx-auto white">
+                    <img src="{{ $ultimo->url_imagem }}" class="rounded-circle img-fluid"
+                        alt="imagem de {{ $ultimo->nome }}">
+                </div>
+                <div class="card-body text-center">
+                    <h4 class="card-title font-weight-bold">{{ $ultimo->nome }}</h4>
+                    <hr>
+                    <i class="fas fa-quote-left"></i> Último jogo finalizado!
+                </div>
+            </div>
+
+            @else
+
+            @endisset
+
+        </section>
     </div>
-    
-  </section>
-</div>
-@else
-
-<h1>Nenhum jogo encontrado!</h1>
-
-@endisset
 </x-layout>
