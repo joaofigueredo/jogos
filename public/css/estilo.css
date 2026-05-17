@@ -1,9 +1,10 @@
-
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
 .body {
     background-color: lightgray;
 }
@@ -190,21 +191,32 @@ html, body {
 }
 
 .carousel-img {
-            width: auto;            /* usa largura original da imagem */
-            max-width: 90%;        /* não ultrapassa 90% da largura da viewport/container */
-            height: auto;
-            max-height: 500px;     /* ajusta conforme quiser para não ficar enorme */
-            display: block;
-            margin-left: auto;
-            margin-right: auto;    /* centraliza a imagem */
-            object-fit: contain;   /* preserva proporção sem corte */
-        }
+    width: auto;
+    /* usa largura original da imagem */
+    max-width: 90%;
+    /* não ultrapassa 90% da largura da viewport/container */
+    height: auto;
+    max-height: 500px;
+    /* ajusta conforme quiser para não ficar enorme */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* centraliza a imagem */
+    object-fit: contain;
+    /* preserva proporção sem corte */
+}
 
-        @media (max-width: 768px) {
-            .carousel-img { max-height: 280px; max-width: 95%; }
-        }
-        /* opcional: centralizar o conteúdo do item */
-        .carousel-item { text-align: center; }
+@media (max-width: 768px) {
+    .carousel-img {
+        max-height: 280px;
+        max-width: 95%;
+    }
+}
+
+/* opcional: centralizar o conteúdo do item */
+.carousel-item {
+    text-align: center;
+}
 
 /*CSS da lista de jogos*/
 
@@ -212,18 +224,23 @@ html, body {
     background-color: #f8f9fa!important
 } */
 .p-4 {
-    padding: 1.5rem!important;
+    padding: 1.5rem !important;
 }
-.mb-0, .my-0 {
-    margin-bottom: 0!important;
+
+.mb-0,
+.my-0 {
+    margin-bottom: 0 !important;
 }
+
 .shadow-sm {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-}    
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
 /* user-dashboard-info-box */
 .user-dashboard-info-box .jogos-list .thumb {
     margin-right: 20px;
 }
+
 .user-dashboard-info-box .jogos-list .thumb img {
     width: 80px;
     height: 80px;
@@ -285,12 +302,14 @@ html, body {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
 .jogo-list:hover {
     -webkit-box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
     box-shadow: 0px 0px 34px 4px rgba(33, 37, 41, 0.06);
     position: relative;
     z-index: 99;
 }
+
 .jogo-list:hover a.jogo-list-favourite {
     color: #e74c3c;
     -webkit-box-shadow: -1px 4px 10px 1px rgba(24, 111, 201, 0.1);
@@ -304,6 +323,7 @@ html, body {
     flex: 0 0 80px;
     border: none;
 }
+
 .jogo-list .jogo-list-image img {
     width: 80px;
     height: 80px;
@@ -323,6 +343,7 @@ html, body {
     flex-wrap: wrap;
     margin-bottom: 0px;
 }
+
 .jogo-list-details ul li {
     margin: 5px 10px 5px 0px;
     font-size: 13px;
@@ -336,10 +357,12 @@ html, body {
     -ms-flex: 0 0 90px;
     flex: 0 0 90px;
 }
+
 .jogo-list .jogo-list-favourite-time span {
     display: block;
     margin: 0 auto;
 }
+
 .jogo-list .jogo-list-favourite-time .jogo-list-favourite {
     display: inline-block;
     position: relative;
@@ -355,6 +378,7 @@ html, body {
     font-size: 16px;
     color: #646f79;
 }
+
 .jogo-list .jogo-list-favourite-time .jogo-list-favourite:hover {
     background: #ffffff;
     color: #e74c3c;
@@ -370,14 +394,18 @@ html, body {
 .bg-white {
     background-color: #ffffff !important;
 }
+
 .p-4 {
-    padding: 1.5rem!important;
+    padding: 1.5rem !important;
 }
-.mb-0, .my-0 {
-    margin-bottom: 0!important;
+
+.mb-0,
+.my-0 {
+    margin-bottom: 0 !important;
 }
+
 .shadow-sm {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
 }
 
 .user-dashboard-info-box .jogos-list .thumb {
@@ -385,18 +413,18 @@ html, body {
 }
 
 .testoSemJogos {
-    text-align:center;
+    text-align: center;
     font-style: italic;
 }
 
-.textoTotal{
-    font-size:1.5em;
+.textoTotal {
+    font-size: 1.5em;
     font-weight: bold;
 }
 
 .numeroTotal {
-    font-size:1.5em;
-    text-align:end;
+    font-size: 1.5em;
+    text-align: end;
     margin-right: 2px;
 }
 
@@ -407,11 +435,11 @@ html, body {
 
 .botaoSalvarJogo:hover {
     font-size: 1.2em;
-    color:red;
+    color: red;
 }
 
 .div-central-jogos {
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -419,90 +447,101 @@ html, body {
 
 /*Cards da view Home*/
 body {
-	background-color: #f5f7fa;
+    background-color: #f5f7fa;
 }
 
 .testimonial-card .card-up {
-  height: 120px;
-  overflow: hidden;
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
+    height: 120px;
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
 }
 
 .aqua-gradient {
-  background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
+    background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
 }
 
 .testimonial-card .avatar {
-  width: 120px;
-  margin-top: -60px;
-  overflow: hidden;
+    width: 120px;
+    margin-top: -60px;
+    overflow: hidden;
 
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
-.textoModal{
-    color:black;
+.textoModal {
+    color: black;
 }
 
-.linkJogo{
+.linkJogo {
     text-decoration: none;
 }
 
 /* css da lista de estatistica */
 .news-container {
-            background: #fff;
-            border-radius: 8px;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
 
-        .news-item {
-            border: none;
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-            display: flex;
-            align-items: flex-start;
-        }
+.news-item {
+    display: flex !important;
+    align-items: center;
+    border: none;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+    display: flex;
+    align-items: flex-start;
+}
 
-        .news-item:last-child { border-bottom: none; }
+.news-item:last-child {
+    border-bottom: none;
+}
 
-        .news-icon {
-            font-size: 1.1rem;
-            margin-right: 15px;
-            margin-top: 5px;
-            color: #333;
-        }
+.news-icon {
+    font-size: 1.1rem;
+    margin-right: 15px;
+    margin-top: 5px;
+    color: #333;
+}
 
-        .news-content { flex-grow: 1; }
+.news-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+.imagemThumb{
+    border-radius: 20px;
+}
 
-        .news-title {
-            color: #5d4da0;
-            font-weight: 500;
-            text-decoration: none;
-            display: block;
-        }
+.news-title {
+    color: #5d4da0;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+}
 
-        .news-text {
-            color: #777;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
+.news-text {
+    color: #777;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
 
-        .news-date {
-            text-align: center;
-            min-width: 60px;
-            text-transform: uppercase;
-            color: #888;
-            font-size: 0.85rem;
-            line-height: 1.2;
-        }
+.news-date {
+    text-align: center;
+    min-width: 60px;
+    text-transform: uppercase;
+    color: #888;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
 
-        .news-date span {
-            display: block;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #555;
-        }
+.news-date span {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+}

@@ -6,22 +6,22 @@
 
     @push('scripts')
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('myChart');
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('myChart');
 
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: @json($labels),
-                datasets: [{
-                    label: 'Jogos mensais',
-                    data: @json($valores),
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            }
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: @json($labels),
+                    datasets: [{
+                        label: 'Jogos mensais',
+                        data: @json($valores),
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                }
+            });
         });
-    });
     </script>
     @endpush
 
@@ -34,13 +34,15 @@
 
         <div class="news-container">
             <div class="list-group">
-
-
-                <div class="news-item">
+                <div class="news-item d-flex align-items-center">
                     <div class="news-icon"><i class="fas fa-check-circle"></i></div>
                     <div class="news-content">
-                        <a href="{{ route('games.show', $jogo->id) }}" class="news-title">{{$jogo->nome }}</a>
-
+                        <div class="news-thumb">
+                            <img class="img-fluid imagemThumb" src="{{ $jogo->url_imagem }}" alt="">
+                        </div>  
+                        <div>
+                            <a href="{{ route('games.show', $jogo->id) }}" class="news-title">{{$jogo->nome }}</a>
+                        </div>
                     </div>
                     <div class="news-date">
                         <span>
