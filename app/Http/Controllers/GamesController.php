@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Jogos;
 use Carbon\Carbon;
 use DB;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 use function PHPUnit\Framework\isNull;
@@ -71,7 +73,7 @@ class GamesController extends Controller
             return back()->withErrors(['erro' => 'Nome do jogo inválido.']);
         }
 
-        $query = "search \"{$jogo}\";\nfields cover.url, name, genres.name, genres,platforms.name, summary, similar_games, language_supports.language, language_supports.language_support_type;\nlimit 3;";
+        $query = "search \"{$jogo}\";\nfields cover.url, name, genres.name, genres,platforms.name, summary, similar_games, language_supports.language, language_supports.language_support_type;\nlimit 1;";
 
         $response = Http::withHeaders([
             'Client-ID' => $this->clientId,
@@ -174,7 +176,7 @@ class GamesController extends Controller
     public function adicionarJogo(Request $request)
     {
         $jogo = $request->nome;
-        // dd($request->critica);
+        // dd($request->nome);
 
 
         $jogoCriado = Jogos::create([
@@ -194,7 +196,9 @@ class GamesController extends Controller
 
     public function listajogos()
     {
-        $jogos = DB::table('jogos')->get();
+        $usuario = Auth::user();
+        // dd($usuario->id);
+        $jogos = Jogos::where('id_jogador', $usuario->id)->get();
 
         return view('games.listajogos')
             ->with('jogos', $jogos);
@@ -239,14 +243,18 @@ class GamesController extends Controller
 
     public function estatisticas()
     {
-        $lista = Jogos::all();
-        $jogos = Jogos::all()->groupBy(function ($item) {
-            return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
-        });
-
+        $usuario = Auth::user();
+        $lista = Jogos::where('id_jogador', $usuario->id)->get();
+        $jogos = Jogos::where('id_jogador', $usuario->id)
+            ->get()
+            ->groupBy(function ($item) {
+                return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
+            });
+        // dd($jogos);
 
         $labels = $jogos->keys();
         $valores = $jogos->map(fn($item) => $item->count())->values();
+
 
         return view('games.estatisticas')
             ->with('jogos', $jogos)

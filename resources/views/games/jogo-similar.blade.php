@@ -32,7 +32,7 @@
                                 <input type="hidden" name="cover" value="{{ $jogo1[0]['cover']['url'] }}">
                                 <input type="hidden" name="idJogador" value="{{ auth()->user()->id }}">
 
-                                <button type="button" class="botaoSalvarJogo" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary"" data-bs-toggle=" modal"
                                     data-bs-target="#addJogo">Adicionar</button>
 
                                 <!-- modal -->
