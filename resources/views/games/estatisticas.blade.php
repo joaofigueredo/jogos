@@ -1,5 +1,5 @@
 <x-layout title="Estatisticas">
-    <h1 class="text-center">Estatisticas</h1>
+    @isset($valores, $labels, $lista)
     <div class="container" style="max-width: 300px;">
         <canvas id="myChart"></canvas>
     </div>
@@ -16,7 +16,11 @@
                     datasets: [{
                         label: 'Jogos mensais',
                         data: @json($valores),
+<<<<<<< HEAD
                         borderColor: 'rgb(75, 192, 192)',
+=======
+                        borderColor: 'rgb(116, 75, 192)',
+>>>>>>> master
                         tension: 0.1
                     }]
                 }
@@ -28,13 +32,18 @@
     @foreach($jogos as $mes =>$lista)
 
     <h3>
-        <h3 class="text-center mb-4 fw-bold">jogados em {{ $mes }}
+        <h3 class="text-center mb-4 fw-bold">
+            Jogados em {{ $mes }}
         </h3>
         @foreach ($lista as $jogo )
 
-        <div class="news-container">
+        <div class="news-container mt-2">
             <div class="list-group">
+<<<<<<< HEAD
                 <div class="news-item d-flex align-items-center">
+=======
+                <div class="news-item">
+>>>>>>> master
                     <div class="news-icon"><i class="fas fa-check-circle"></i></div>
                     <div class="news-content">
                         <div class="news-thumb">
@@ -51,9 +60,20 @@
                     </div>
                 </div>
             </div>
-
         </div>
         @endforeach
-        <p class="text-center"> total: {{ $lista->count() }}</p>
+        <div class="news-container mt-2">
+            <div class="list-group">
+                <div class="news-item">
+                    <div class="news-content">
+                        <h3 class="text-center"> TOTAL: {{ count($lista) }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @endforeach
+        @else
+        <h1>Nenhum jogo</h1>
+        @endisset
 </x-layout>

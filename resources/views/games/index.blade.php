@@ -20,6 +20,7 @@
                     <div class="card-body">
                         <h5 class="card-title card-titulo-jogo">{{$jogo['name']}}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Plataformas</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $jogo['id'] }}</h6>
                         <ul>
                             @if(!empty($jogo['platforms']))
                             @foreach ($jogo['platforms'] as $platform)
