@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favoritos;
+use App\Models\Jogos;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         return view("login.index");
     }
 
-    public function create() {
+    public function create()
+    {
         return view("login.create");
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $request->input('name') ? $data['name'] = $request->input('name') : dd('Nome invalido');
         $request->input('email') ? $data['email'] = $request->input('email') : dd('email invalido');
@@ -41,10 +47,11 @@ class LoginController extends Controller
         return to_route('busca.games');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $login = $request->only('email', 'password');
-        
-        if(Auth::attempt($login)){
+
+        if (Auth::attempt($login)) {
             $request->session()->regenerate();
             $usuario = Auth::user();
 
@@ -57,20 +64,38 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
-    public function Logout(Request $request) {
+    public function Logout(Request $request)
+    {
         Auth::logout();
 
         return to_route("login.index");
     }
 
-    public function perfil() {
+    public function perfil()
+    {
+        $jogosFavoritos = '';
+        $favoritos = DB::table('favoritos')
+            ->where('user_id', auth()->id())
+            ->take(4)
+            ->pluck('id_jogo')
+            ->toArray();
+
+        // dd($favoritos);
+        $jogos = Jogos::whereIn('id', $favoritos)
+            ->get();
+
+        // dd($jogos);
+
+
         $usuario = Auth::user();
-        // dd($usuario->idPs);
+
         return view("login.perfil")
-            ->with('usuario', $usuario);
+            ->with('usuario', $usuario)
+            ->with('jogos', $jogos);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         User::where('id', Auth::user()->id)
             ->update([
                 'name' => $request->name,
@@ -78,7 +103,7 @@ class LoginController extends Controller
                 'idPs' => $request->idPs,
                 'idXbox' => $request->idXbox
             ]);
-        
+
         $mensagemSucesso = "Perfil atualizado com sucesso!";
 
         return to_route("login.perfil")

@@ -545,3 +545,14 @@ body {
     font-weight: bold;
     color: #555;
 }
+
+/* favoritos */
+
+.divFavorito{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.cardFavorito{
+    background-color: #6495ED;
+}

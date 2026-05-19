@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoritosController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -52,10 +53,12 @@ Route::middleware(ValidarLogin::class)->group(function () {
     //Jogo similar
     Route::get('/jogo-similar', [GamesController::class, 'buscarSimilares'])
         ->name('games.jogo.similar');
-        //Rota de busca de jogos similares
-Route::get('/similar', [GamesController::class, 'similar'])
-    ->name('games.similar');
+    //Rota de busca de jogos similares
+    Route::get('/similar', [GamesController::class, 'similar'])
+        ->name('games.similar');
 
+    Route::post('/favoritar', [FavoritosController::class, 'store'])
+        ->name('games.favorito');
 });
 
 

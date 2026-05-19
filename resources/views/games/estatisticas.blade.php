@@ -16,11 +16,7 @@
                     datasets: [{
                         label: 'Jogos mensais',
                         data: @json($valores),
-<<<<<<< HEAD
                         borderColor: 'rgb(75, 192, 192)',
-=======
-                        borderColor: 'rgb(116, 75, 192)',
->>>>>>> master
                         tension: 0.1
                     }]
                 }
@@ -39,16 +35,12 @@
 
         <div class="news-container mt-2">
             <div class="list-group">
-<<<<<<< HEAD
                 <div class="news-item d-flex align-items-center">
-=======
-                <div class="news-item">
->>>>>>> master
                     <div class="news-icon"><i class="fas fa-check-circle"></i></div>
                     <div class="news-content">
                         <div class="news-thumb">
                             <img class="img-fluid imagemThumb" src="{{ $jogo->url_imagem }}" alt="">
-                        </div>  
+                        </div>
                         <div>
                             <a href="{{ route('games.show', $jogo->id) }}" class="news-title">{{$jogo->nome }}</a>
                         </div>

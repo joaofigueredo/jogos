@@ -12,7 +12,7 @@
                                         <h3>Jogo</h3>
                                     </th>
                                     <th class="text-center">Status</th>
-                                    <th class="action text-right">Ações</th>
+                                    <th class="action text-center">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,10 +51,19 @@
                                                             class="bi bi-lightbulb-fill"></i></button>
                                                 </li>
                                             </form>
+                                            <form action="{{ route('games.favorito', ['id_jogo' => $jogo->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                <li><button class="botaoSalvarJogo" type="submit"
+                                                        data-bs-toggle="modal"><i
+                                                            class="bi bi-bookmark-star"></i></button>
+                                                </li>
+                                            </form>
                                             <li><button class="botaoSalvarJogo" type="button" data-bs-toggle="modal"
                                                     data-bs-target="#apagarJogo{{ $jogo->id }}"><i
                                                         class="bi bi-trash3"></i></button>
                                             </li>
+
 
                                             <!-- modal -->
                                             <div class="modal fade" id="apagarJogo{{ $jogo->id }}" tabindex="-1">

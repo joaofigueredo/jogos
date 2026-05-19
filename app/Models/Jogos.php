@@ -15,4 +15,9 @@ class Jogos extends Model
         'id_jogador',
         'critica'
     ];
+
+    public function favoritos()
+    {
+        return $this->hasMany(Favoritos::class, 'id_jogo');
+    }
 }

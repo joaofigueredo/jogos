@@ -1,4 +1,24 @@
 <x-layout title="Editar Perfil">
+    @isset($jogos)
+    <div>
+        <h3 class="text-center">Favoritos</h3>
+    </div>
+    <div class="divFavorito">
+        @foreach ($jogos as $jogo)
+
+
+        <div class="card testimonial-card mt-2">
+            <div class="card-up"></div>
+            <div class="avatar mx-auto">
+                <img src="{{ $jogo->url_imagem }}" class="rounded-circle img-fluid" alt="imagem de {{ $jogo->nome }}">
+            </div>
+            <div class="card-body text-center">
+                <h4 class="card-title font-weight-bold">{{ $jogo->nome }}</h4>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    @endisset
     <form action="{{ route('login.update') }}" method="POST">
         <section class="vh-100 gradient-custom">
             <div class="container py-5 h-100">
