@@ -29,10 +29,6 @@ class FavoritosController extends Controller
             return redirect()->back()->withErrors('Já atingiu o limite de 4 favoritos!');
         }
 
-        // Favoritos::create([
-        //     'user_id' => $user_id,
-        //     'id_jogo' => $id_jogo
-        // ]);
 
         DB::table('favoritos')->insert([
             'user_id' => $user_id,
@@ -43,10 +39,14 @@ class FavoritosController extends Controller
         return redirect()->back()->with('sucesso', 'Jogo adicionado aos favoritos!');
     }
 
-    public function destroy(Request $id)
+    public function destroy(Request $request)
     {
-        $favorito = Favoritos::where('user_id', Auth::id())->findOrFail($id);
-        $favorito->delete();
+        $id = $request->id;
+        // dd($id);
+        $favorito = DB::table('favoritos')
+            ->where('user_id', Auth::id())
+            ->where('id_jogo', $id)
+            ->delete();
 
         return redirect()->back()->with('sucesso', 'Jogo removido dos favoritos!');
     }

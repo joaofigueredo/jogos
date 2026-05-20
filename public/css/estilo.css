@@ -552,7 +552,20 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    background-color: #9370DB;
 }
 .cardFavorito{
     background-color: #6495ED;
+}
+
+.divBotaoFavoritos{
+    display: flex;
+    justify-content: space-around;
+}
+
+.botaoApagarFavorito{
+    border-radius: 10px;
+    color: white;
+      background-color: transparent;
+
 }

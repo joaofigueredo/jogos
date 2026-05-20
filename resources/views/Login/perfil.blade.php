@@ -6,16 +6,18 @@
     <div class="divFavorito">
         @foreach ($jogos as $jogo)
 
-
-        <div class="card testimonial-card mt-2">
-            <div class="card-up"></div>
-            <div class="avatar mx-auto">
-                <img src="{{ $jogo->url_imagem }}" class="rounded-circle img-fluid" alt="imagem de {{ $jogo->nome }}">
-            </div>
-            <div class="card-body text-center">
-                <h4 class="card-title font-weight-bold">{{ $jogo->nome }}</h4>
+        <div class="card text-white bg-dark mb-3" style="width: 25%;">
+            <img src="{{ $jogo->url_imagem }}" class=" img-fluid mx-auto mt-3" alt="imagem de {{ $jogo->nome }}">
+            <div class="card-body divBotaoFavoritos">
+                <p class="card-text text-center">{{ $jogo->nome }}</p>
+                <form action="{{ route('favoritos.destroy', ['id' => $jogo->id]) }}" method="POST">
+                    @csrf
+                    <button class="botaoApagarFavorito" type="submit"><i class="bi bi-trash3"></i></button>
+                </form>
             </div>
         </div>
+
+
         @endforeach
     </div>
     @endisset

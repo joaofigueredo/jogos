@@ -59,6 +59,9 @@ Route::middleware(ValidarLogin::class)->group(function () {
 
     Route::post('/favoritar', [FavoritosController::class, 'store'])
         ->name('games.favorito');
+
+    Route::post('/destroyFavorito', [FavoritosController::class, 'destroy'])
+        ->name('favoritos.destroy');
 });
 
 

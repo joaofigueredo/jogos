@@ -6,22 +6,22 @@
 
     @push('scripts')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('myChart');
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myChart');
 
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: @json($labels),
-                    datasets: [{
-                        label: 'Jogos mensais',
-                        data: @json($valores),
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    }]
-                }
-            });
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: @json($labels),
+                datasets: [{
+                    label: 'Jogos mensais',
+                    data: @json($valores),
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            }
         });
+    });
     </script>
     @endpush
 
@@ -58,7 +58,8 @@
             <div class="list-group">
                 <div class="news-item">
                     <div class="news-content">
-                        <h3 class="text-center"> TOTAL: {{ count($lista) }}</h3>
+                        <p class="text-center"> TOTAL:</p>
+                        <p class="text-end">{{ count($lista) }}</p>
                     </div>
                 </div>
             </div>
