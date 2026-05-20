@@ -1,7 +1,7 @@
 <x-layout title="Editar Perfil">
     @isset($jogos)
     <div>
-        <h3 class="text-center">Favoritos</h3>
+        <h3 class="text-center">Favoritos</h3>  
     </div>
     <div class="divFavorito">
         @foreach ($jogos as $jogo)

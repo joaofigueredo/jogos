@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Favoritos;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -53,14 +54,17 @@ class FavoritosController extends Controller
 
     public function index()
     {
-        $favoritos = DB::table('favoritos')
-            ->where('user_id', auth()->id())
-            ->pluck('id_jogo')
-            ->toArray();
+        try{
+            $favoritos = DB::table('favoritos')
+                ->where('user_id', auth()->id())
+                ->pluck('id_jogo')
+                ->toArray();
+        }
+        catch(Exception $e){
+            return redirect()->back()->with('error', $e);
+        }
 
-        // dd($favoritos);
         $jogos = DB::table('jogos')->whereIn('id', $favoritos)->get();
-        // dd($jogos);
 
         return view('favoritos.index')
             ->with('jogos', $jogos);
