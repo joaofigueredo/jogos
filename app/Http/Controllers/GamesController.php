@@ -191,7 +191,7 @@ class GamesController extends Controller
         // dd($jogoCriado);
 
         return to_route('games.listajogos')
-            ->with('mensagemSucesso', "$jogo adicionado a sua conta!");
+            ->with('sucesso', "$jogo adicionado a sua conta!");
     }
 
     public function listajogos()
@@ -214,7 +214,7 @@ class GamesController extends Controller
 
 
         return to_route('games.listajogos')
-            ->with('mensagemSucesso', "Jogo removido com sucesso!");
+            ->with('sucesso', "Jogo removido com sucesso!");
     }
 
     public function buscar(Request $request)

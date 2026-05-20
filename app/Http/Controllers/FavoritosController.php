@@ -50,4 +50,19 @@ class FavoritosController extends Controller
 
         return redirect()->back()->with('sucesso', 'Jogo removido dos favoritos!');
     }
+
+    public function index()
+    {
+        $favoritos = DB::table('favoritos')
+            ->where('user_id', auth()->id())
+            ->pluck('id_jogo')
+            ->toArray();
+
+        // dd($favoritos);
+        $jogos = DB::table('jogos')->whereIn('id', $favoritos)->get();
+        // dd($jogos);
+
+        return view('favoritos.index')
+            ->with('jogos', $jogos);
+    }
 }

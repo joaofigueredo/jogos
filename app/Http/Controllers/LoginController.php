@@ -56,7 +56,7 @@ class LoginController extends Controller
             $usuario = Auth::user();
 
             return to_route('buscar.games')
-                ->with('mensagemSucesso', "Olá, $usuario->name!");
+                ->with('sucesso', "Olá, $usuario->name!");
         }
 
         return to_route('login.index')->withErrors([
@@ -73,7 +73,6 @@ class LoginController extends Controller
 
     public function perfil()
     {
-        $jogosFavoritos = '';
         $favoritos = DB::table('favoritos')
             ->where('user_id', auth()->id())
             ->take(4)
