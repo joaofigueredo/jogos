@@ -1,6 +1,6 @@
 <x-layout title="Gerenciar Favoritos">
     @isset($jogos)
-    @if(count($jogos) < 4) <h1><a href="">Adicionar Favorito</a></h1>
+    @if(count($jogos) < 4) <p><a href="">Adicionar Favorito</a><i class="bi bi-save2"></i></p>
 
         @endif
         <div class="divFavorito mt-4">
@@ -12,10 +12,32 @@
                     <p class="card-text text-center">{{ $jogo->nome }}</p>
                     <form action="{{ route('favoritos.destroy', ['id' => $jogo->id]) }}" method="POST">
                         @csrf
-                        <button class="botaoApagarFavorito" type="submit"><i class="bi bi-trash3"></i></button>
+                        <button class="botaoApagarFavorito" type="button" data-bs-toggle="modal"
+                            data-bs-target="#attFavorito"><i class="bi bi-trash3"></i></button>
+
+                        <div class="modal fade" id="attFavorito" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title textoModal">Confirmação</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="textoModal">Tem certeza que deseja remover o favorito?</p>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button class="btn btn-primary" type="submit">Salvar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
+
 
             @endforeach
         </div>
