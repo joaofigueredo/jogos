@@ -51,21 +51,45 @@
                                                             class="bi bi-lightbulb-fill"></i></button>
                                                 </li>
                                             </form>
-                                            <form action="{{ route('games.favorito', ['id_jogo' => $jogo->id])}}"
-                                                method="POST">
-                                                @csrf
-                                                <li><button class="botaoSalvarJogo" type="submit"
-                                                        data-bs-toggle="modal"><i
-                                                            class="bi bi-bookmark-star"></i></button>
-                                                </li>
-                                            </form>
+                                            <button class="botaoSalvarJogo" type="button" data-bs-toggle="modal"
+                                                data-bs-target="#addFavorito{{ $jogo->id }}"><i
+                                                    class="bi bi-bookmark-star"></i></button>
+                                            <!-- modal adicionar favorito -->
+                                            <div class="modal fade" id="addFavorito{{ $jogo->id }}" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Confirmação</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Tem certeza que deseja adicionar {{ $jogo->nome }} aos
+                                                            favoritos?
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Cancelar</button>
+                                                            <form
+                                                                action="{{ route('games.favorito', ['id_jogo' => $jogo->id])}}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <li><button class="botaoSalvarJogo" type="submit"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#addFavorito{{ $jogo->id }}"
+                                                                        class="btn btn-primary">Confirmar</button>
+                                                                </li>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                             <li><button class="botaoSalvarJogo" type="button" data-bs-toggle="modal"
                                                     data-bs-target="#apagarJogo{{ $jogo->id }}"><i
                                                         class="bi bi-trash3"></i></button>
                                             </li>
 
-
-                                            <!-- modal -->
+                                            <!-- modal exclusao -->
                                             <div class="modal fade" id="apagarJogo{{ $jogo->id }}" tabindex="-1">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">

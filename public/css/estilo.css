@@ -552,6 +552,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-content: center;
     background-color: #9370DB;
 }
 .cardFavorito{
