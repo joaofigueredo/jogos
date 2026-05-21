@@ -569,3 +569,8 @@ body {
       background-color: transparent;
 
 }
+
+.editarPreferidos{
+    text-decoration: none;
+    color: black;
+}

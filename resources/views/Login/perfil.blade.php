@@ -1,7 +1,10 @@
 <x-layout title="Editar Perfil">
     @isset($jogos)
     <div>
-        <h3 class="text-center">Favoritos</h3>  
+        <h2 class="text-center">Favoritos</h2>
+        <h4><a href="{{ route('favoritos.index') }}" class="editarPreferidos">Editar Favoritos<i
+                    class="bi bi-pencil-square"></i></a>
+        </h4>
     </div>
     <div class="divFavorito">
         @foreach ($jogos as $jogo)
@@ -10,13 +13,9 @@
             <img src="{{ $jogo->url_imagem }}" class=" img-fluid mx-auto mt-3" alt="imagem de {{ $jogo->nome }}">
             <div class="card-body divBotaoFavoritos">
                 <p class="card-text text-center">{{ $jogo->nome }}</p>
-                <form action="{{ route('favoritos.destroy', ['id' => $jogo->id]) }}" method="POST">
-                    @csrf
-                    <button class="botaoApagarFavorito" type="submit"><i class="bi bi-trash3"></i></button>
-                </form>
+
             </div>
         </div>
-
 
         @endforeach
     </div>
@@ -96,7 +95,6 @@
                                                                 type="submit">Salvar</button>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>

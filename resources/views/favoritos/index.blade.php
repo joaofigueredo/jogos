@@ -1,6 +1,7 @@
 <x-layout title="Gerenciar Favoritos">
     @isset($jogos)
-    @if(count($jogos) < 4) <p><a href="">Adicionar Favorito</a><i class="bi bi-save2"></i></p>
+    @if(count($jogos) < 4) <p><a href="{{ route('games.listajogos') }}">Adicionar Favorito</a><i
+            class="bi bi-save2"></i></p>
 
         @endif
         <div class="divFavorito mt-4">
