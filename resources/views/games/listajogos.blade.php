@@ -51,9 +51,18 @@
                                                             class="bi bi-lightbulb-fill"></i></button>
                                                 </li>
                                             </form>
+
+
+                                            @if(in_array($jogo->id, $favoritos))
+                                            <button class="botaoSalvarJogo" type="button" data-bs-toggle=""
+                                                data-bs-target=""><i class="bi bi-bookmark-star-fill"></i></button>
+                                            @else
                                             <button class="botaoSalvarJogo" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#addFavorito{{ $jogo->id }}"><i
                                                     class="bi bi-bookmark-star"></i></button>
+                                            @endif
+
+
                                             <!-- modal adicionar favorito -->
                                             <div class="modal fade" id="addFavorito{{ $jogo->id }}" tabindex="-1">
                                                 <div class="modal-dialog">

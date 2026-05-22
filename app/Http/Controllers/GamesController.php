@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favoritos;
 use App\Models\Jogos;
 use Carbon\Carbon;
 use DB;
@@ -200,8 +201,13 @@ class GamesController extends Controller
         // dd($usuario->id);
         $jogos = Jogos::where('id_jogador', $usuario->id)->get();
 
+        $favoritos = DB::table('favoritos')->where('user_id', $usuario->id)->pluck('id_jogo')->toArray();
+
+        // dd($favoritos[0]);
+
         return view('games.listajogos')
-            ->with('jogos', $jogos);
+            ->with('jogos', $jogos)
+            ->with('favoritos', $favoritos);
     }
 
     public function destroy(Request $request)
