@@ -54,14 +54,47 @@
 
 
                                             @if(in_array($jogo->id, $favoritos))
-                                            <button class="botaoSalvarJogo" type="button" data-bs-toggle=""
-                                                data-bs-target=""><i class="bi bi-bookmark-star-fill"></i></button>
+                                            <button class="botaoSalvarJogo" type="button" data-bs-toggle="modal"
+                                                data-bs-target="#attFavorito{{ $jogo->id }}"><i
+                                                    class="bi bi-bookmark-star-fill"></i></button>
+
+
+
+
                                             @else
                                             <button class="botaoSalvarJogo" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#addFavorito{{ $jogo->id }}"><i
                                                     class="bi bi-bookmark-star"></i></button>
                                             @endif
+                                            <!-- modal remover favorito -->
+                                            <div class="modal fade" id="attFavorito{{ $jogo->id }}" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title textoModal">Confirmação</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="textoModal">Tem certeza que deseja remover o
+                                                                favorito?</p>
 
+                                                        </div>
+
+                                                        <div class="modal-footer">
+
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Cancelar</button>
+                                                            <form
+                                                                action="{{ route('favoritos.destroy', ['id' => $jogo->id]) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                                    data-bs-target="#attFavorito{{ $jogo->id }}"
+                                                                    type="submit">Confirmar</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <!-- modal adicionar favorito -->
                                             <div class="modal fade" id="addFavorito{{ $jogo->id }}" tabindex="-1">
