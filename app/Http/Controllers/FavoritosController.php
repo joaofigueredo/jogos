@@ -26,7 +26,9 @@ class FavoritosController extends Controller
             ->where('id_jogo', $id_jogo)
             ->exists();
 
-        if ($repeticaoFavorito >= 4) {
+        $fav = Favoritos::all();
+
+        if ($repeticaoFavorito || count($fav) >= 4) {
             return redirect()->back()->withErrors('Já atingiu o limite de 4 favoritos!');
         }
 
@@ -54,13 +56,12 @@ class FavoritosController extends Controller
 
     public function index()
     {
-        try{
+        try {
             $favoritos = DB::table('favoritos')
                 ->where('user_id', auth()->id())
                 ->pluck('id_jogo')
                 ->toArray();
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->back()->with('error', $e);
         }
 

@@ -9,7 +9,7 @@
     <div class="divFavorito">
         @foreach ($jogos as $jogo)
 
-        <div class="card text-white bg-dark mb-3" style="width: 25%;">
+        <div class="card text-white bg-dark mb-3 mt-2" style="width: 25%;">
             <img src="{{ $jogo->url_imagem }}" class=" img-fluid mx-auto mt-3" alt="imagem de {{ $jogo->nome }}">
             <div class="card-body divBotaoFavoritos">
                 <p class="card-text text-center">{{ $jogo->nome }}</p>
