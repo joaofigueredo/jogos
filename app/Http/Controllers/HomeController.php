@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index() {
+        $usuario_id = auth()->user()->id;
+        // dd($usuario_id);
         $ultimo = DB::table('jogos')
+            ->where('id_jogador', $usuario_id)
             ->orderBy('id', 'DESC')
             ->first();
         
-        
-        // dd($ultimo);
 
         if($ultimo == null) {
             return view('home.index');
