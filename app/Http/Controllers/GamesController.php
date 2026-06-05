@@ -98,9 +98,6 @@ class GamesController extends Controller
                 ->withErrors(['erro' => $mensagemErro]);
         }
 
-
-
-        // dd($jogos[0]['genres'][0]['name']);
         return view('games.index')
             ->with('jogos', $jogos);
     }
@@ -177,8 +174,6 @@ class GamesController extends Controller
     public function adicionarJogo(Request $request)
     {
         $jogo = $request->nome;
-        // dd($request->nome);
-
 
         $jogoCriado = Jogos::create([
             'id_jogo' => $request->id_jogo,
@@ -189,7 +184,7 @@ class GamesController extends Controller
             'critica' => $request->critica
         ]);
 
-        // dd($jogoCriado);
+
 
         return to_route('games.listajogos')
             ->with('sucesso', "$jogo adicionado a sua conta!");
@@ -198,12 +193,12 @@ class GamesController extends Controller
     public function listajogos()
     {
         $usuario = Auth::user();
-        // dd($usuario->id);
+
         $jogos = Jogos::where('id_jogador', $usuario->id)->get();
 
         $favoritos = DB::table('favoritos')->where('user_id', $usuario->id)->pluck('id_jogo')->toArray();
 
-        // dd($favoritos[0]);
+
 
         return view('games.listajogos')
             ->with('jogos', $jogos)
@@ -239,9 +234,8 @@ class GamesController extends Controller
     public function show(Request $request)
     {
         $id = $request->id;
-        // dd($id);
+
         $jogo = Jogos::where('id', '=', $id)->get();
-        // dd($jogo);
 
         return view('games.show')->with('jogo', $jogo);
     }
@@ -256,7 +250,6 @@ class GamesController extends Controller
             ->groupBy(function ($item) {
                 return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
             });
-        // dd($jogos);
 
         $labels = $jogos->keys();
         $valores = $jogos->map(fn($item) => $item->count())->values();
