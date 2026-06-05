@@ -44,7 +44,7 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return to_route('busca.games');
+        return to_route('buscar.games');
     }
 
     public function login(Request $request)

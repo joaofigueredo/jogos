@@ -88,8 +88,6 @@ class GamesController extends Controller
             return back()->withErrors(['erro' => 'Erro na busca de jogos.']);
         }
 
-
-
         $jogos = $response->json();
 
         if (empty($jogos)) {
@@ -121,8 +119,6 @@ class GamesController extends Controller
         ])->withOptions(['verify' => false])
             ->withBody($query, 'text/plain')
             ->post('https://api.igdb.com/v4/games');
-
-
 
         if (!$response->successful()) {
             \Log::error('IGDB search similar request failed', ['status' => $response->status(), 'body' => $response->body()]);
@@ -184,8 +180,6 @@ class GamesController extends Controller
             'critica' => $request->critica
         ]);
 
-
-
         return to_route('games.listajogos')
             ->with('sucesso', "$jogo adicionado a sua conta!");
     }
@@ -197,8 +191,6 @@ class GamesController extends Controller
         $jogos = Jogos::where('id_jogador', $usuario->id)->get();
 
         $favoritos = DB::table('favoritos')->where('user_id', $usuario->id)->pluck('id_jogo')->toArray();
-
-
 
         return view('games.listajogos')
             ->with('jogos', $jogos)
