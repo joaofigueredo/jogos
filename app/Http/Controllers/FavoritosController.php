@@ -42,6 +42,7 @@ class FavoritosController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->id;
+        // dd($id);
 
         $favorito = DB::table('favoritos')
             ->where('user_id', Auth::id())
