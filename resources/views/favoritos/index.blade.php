@@ -10,9 +10,9 @@
                 <form action="{{ route('favoritos.destroy', ['id' => $jogo->id]) }}" method="POST">
                     @csrf
                     <button class="botaoApagarFavorito" type="button" data-bs-toggle="modal"
-                        data-bs-target="#attFavorito"><i class="bi bi-trash3"></i></button>
+                        data-bs-target="#attFavorito{{$jogo->id}}"><i class="bi bi-trash3"></i></button>
 
-                    <div class="modal fade" id="attFavorito" tabindex="-1">
+                    <div class="modal fade" id="attFavorito{{$jogo->id}}" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">

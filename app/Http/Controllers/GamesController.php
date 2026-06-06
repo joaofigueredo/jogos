@@ -226,9 +226,8 @@ class GamesController extends Controller
     public function show(Request $request)
     {
         $id = $request->id;
-        // dd($id);
+
         $jogo = Jogos::where('id', '=', $id)->get();
-        // dd($jogo);
 
         return view('games.show')->with('jogo', $jogo);
     }
@@ -243,7 +242,6 @@ class GamesController extends Controller
             ->groupBy(function ($item) {
                 return Carbon::parse($item->created_at)->locale('pt_BR')->translatedFormat('F Y');
             });
-        // dd($jogos);
 
         $labels = $jogos->keys();
         $valores = $jogos->map(fn($item) => $item->count())->values();

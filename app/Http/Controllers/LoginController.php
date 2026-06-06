@@ -79,11 +79,8 @@ class LoginController extends Controller
             ->pluck('id_jogo')
             ->toArray();
 
-        // dd($favoritos);
         $jogos = Jogos::whereIn('id', $favoritos)
             ->get();
-
-        // dd($jogos);
 
 
         $usuario = Auth::user();
@@ -103,9 +100,7 @@ class LoginController extends Controller
                 'idXbox' => $request->idXbox
             ]);
 
-        $mensagemSucesso = "Perfil atualizado com sucesso!";
-
         return to_route("login.perfil")
-            ->with('mensagemSucesso', $mensagemSucesso);
+            ->with('sucesso', 'Perfil atualizado com sucesso!');
     }
 }
