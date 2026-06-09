@@ -5,15 +5,29 @@ body {
     padding: 0;
 }
 
-.body {
-    background-color: lightgray;
-}
+    body {
+        background-color: #f8f9fa;
+        /* Um cinza bem claro para o fundo */
+        font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .navbar {
+        background-color: #ffffff;
+    }
+
+    .btn-custom-green {
+        background-color: #198754;
+        /* Verde padrão do Bootstrap, ou mude para o seu tom */
+        border: none;
+        transition: background-color 0.2s ease;
+    }
+
+    .btn-custom-green:hover {
+        background-color: #146c43;
+    }
 
 /*Tela de busca*/
-.bodyHomeJogos {
-    background-color: lightgray;
-    padding: 20px;
-}
+
 
 .tituloBusca {
     font-size: 1.3em;
@@ -575,3 +589,5 @@ body {
     text-decoration: none;
     color: black;
 }
+
+/* estilos */

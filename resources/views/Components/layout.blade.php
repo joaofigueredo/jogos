@@ -16,8 +16,8 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 body">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 @if (Auth::check())
@@ -76,7 +76,56 @@
             </ul>
             @endif
         </div>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg border-bottom shadow-sm py-3">
+        <div class="container-fluid px-4">
+            <div class="collapse navbar-collapse d-flex justify-content-between align-items-center">
+
+                <ul class="navbar-nav mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
+                            href="{{ route('home.jogos') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
+                            href="{{ route('buscar.games') }}">Jogos</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="
+                            {{ route('games.listajogos') }}">Sua lista</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
+                            href="{{ route('games.estatisticas') }}">Estatísticas</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
+                            href="{{ route('favoritos.index') }}">Favoritos</a></li>
+                    <li class="nav-item">
+                        <form action="{{ route('games.buscar') }}" method="POST">
+                            @csrf
+                            <input type="text" id="nome" name="nome">
+                            <button type="submit" class="btn btn-info">buscar</button>
+                        </form>
+                    </li>
+                </ul>
+
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-dark fw-medium" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                        <li><a class="dropdown-item" href="{{ route('login.perfil') }}">Meu Perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form method="POST" action="{{ route('login.logout') }}">
+                                @csrf
+                                <button class="dropdown-item text-danger" type="submit">Sair</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
     </nav>
+
     @if(session('sucesso'))
     <div class="alert alert-success" id="mensagem">
         <p>{{ session('sucesso') }}</p>
@@ -106,6 +155,7 @@
             <a class="text-body" href="https://github.com/joaofigueredo" target="_blank">João Carlos</a>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
