@@ -590,4 +590,39 @@ body {
     color: black;
 }
 
-/* estilos */
+/* estilos favoritos */
+       body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* Efeito de subir o card e aumentar a sombra ao passar o mouse */
+        .game-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        /* Fixar proporção da imagem do jogo */
+        .game-cover {
+            height: 220px;
+            object-fit: cover;
+        }
+
+        /* Card de adicionar estilizado */
+        .add-card {
+            border: 2px dashed #dee2e6;
+            background: transparent;
+            min-height: 310px;
+            transition: all 0.2s ease;
+        }
+
+        .add-card:hover {
+            border-color: #198754;
+            background-color: rgba(25, 135, 84, 0.03);
+            color: #198754 !important;
+        }
