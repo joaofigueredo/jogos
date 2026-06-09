@@ -4,28 +4,36 @@
         <h4><a href="{{ route('favoritos.index') }}" class="editarPreferidos">Editar Favoritos<i
                     class="bi bi-pencil-square"></i></a>
         </h4>
-        </div>
-        <div class="divFavorito">
-            @foreach ($jogos as $jogo)
+    </div>
+    <div class="divFavorito">
+        @foreach ($jogos as $jogo)
 
-            <div class="card text-white bg-dark mb-3 mt-2" style="width: 25%;">
-                <img src="{{ $jogo->url_imagem }}" class=" img-fluid mx-auto mt-3" alt="imagem de {{ $jogo->nome }}">
-                <div class="card-body divBotaoFavoritos">
-                    <p class="card-text text-center">{{ $jogo->nome }}</p>
-
-                </div>
+        <div class="card text-white bg-dark mb-3 mt-2" style="width: 25%;">
+            <img src="{{ $jogo->url_imagem }}" class=" img-fluid mx-auto mt-3" alt="imagem de {{ $jogo->nome }}">
+            <div class="card-body divBotaoFavoritos">
+                <p class="card-text text-center">{{ $jogo->nome }}</p>
             </div>
-
-            @endforeach
         </div>
-        @endif
-        <form action="{{ route('login.update') }}" method="POST">
-            <section class="vh-100 gradient-custom">
-                <div class="container py-5 h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                            <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                                <div class="card-body p-5 text-center">
+        @endforeach
+    </div>
+    @endisset
+    <form action="{{ route('login.update') }}" method="POST">
+        <section class="vh-100 gradient-custom">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
+                                <div class="mb-md-5 mt-md-4 pb-5">
+                                    <h2 class="fw-bold mb-2 text-uppercase">Editar perfil</h2>
+                                    <form action="{{ route('login.store') }}" method="POST">
+                                        @csrf
+                                        <div data-mdb-input-init class="form-outline form-white mb-4">
+                                            <input type="text" id="name" name="name"
+                                                class="form-control form-control-lg" autofocus
+                                                value="{{ $usuario->name }}" />
+                                            <label class="form-label texto-login" for="nome">Nome</label>
+                                        </div>
 
                                     <div class="mb-md-5 mt-md-4 pb-5">
 
