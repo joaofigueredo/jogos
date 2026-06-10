@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $usuario_id = auth()->user()->id;
         // dd($usuario_id);
-        $ultimo = DB::table('jogos')
+
+        $jogos = DB::table('jogos')->count();
+
+        $ultimos = DB::table('jogos')
             ->where('id_jogador', $usuario_id)
             ->orderBy('id', 'DESC')
-            ->first();
-        
+            ->take(3)
+            ->get();
+        // dd($ultimos);
 
-        if($ultimo == null) {
+        if ($ultimos == null) {
             return view('home.index');
         }
 
-        return view('home.index')->with('ultimo', $ultimo);
+        return view('home.index')->with('ultimos', $ultimos)->with('jogos', $jogos);
     }
 }

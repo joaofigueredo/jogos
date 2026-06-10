@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jogos extends Model
 {
     protected $primaryKey = 'id_jogo';
+    protected $casts = ['created_at' => 'datetime'];
     protected $fillable = [
         'id_jogo',
         'nome',

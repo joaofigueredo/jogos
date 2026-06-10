@@ -626,3 +626,44 @@ body {
             background-color: rgba(25, 135, 84, 0.03);
             color: #198754 !important;
         }
+
+        /* estilo de index */
+        /* Estilos CSS personalizados e simples */
+        body {
+            background-color: #f8f9fa; /* Fundo cinza bem claro */
+            color: #333;
+        }
+        .header-bg {
+            background-color: #343a40; /* Cor escura do cabeçalho */
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .card {
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.2s; /* Efeito suave ao passar o mouse */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: #6c757d; /* Cor neutra para os ícones */
+        }
+        .game-cover {
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .recent-activity-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .recent-activity-list li {
+            border-bottom: 1px solid #dee2e6;
+            padding: 0.75rem 0;
+        }
+        .recent-activity-list li:last-child {
+            border-bottom: none;
+        }

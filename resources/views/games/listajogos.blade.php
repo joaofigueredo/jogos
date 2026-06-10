@@ -8,7 +8,7 @@
 
             <div class="d-flex align-items-center gap-3">
                 <div class="bg-light p-3 rounded-3 text-success">
-                    <i class="bi bi-controller fs-3"></i>
+                    <img src="{{ $jogo->url_imagem }}" alt="imagem do jogo">
                 </div>
                 <div>
                     <h6 class="fw-bold text-dark mb-0 fs-5">{{ $jogo->nome }}</h6>
