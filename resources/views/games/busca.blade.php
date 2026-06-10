@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-custom-green text-white fw-bold py-2-5 rounded-3 shadow-sm">
+                    <button type="submit" class="btn btn-custom-green  fw-bold py-2-5 rounded-3 shadow-sm">
                         Buscar
                     </button>
                 </div>
