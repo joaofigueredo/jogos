@@ -169,6 +169,7 @@ class GamesController extends Controller
 
     public function adicionarJogo(Request $request)
     {
+        // dd($request);
         $jogo = $request->nome;
         $jogoCriado = Jogos::create([
             'id_jogo' => $request->id_jogo,
