@@ -14,7 +14,8 @@ class Jogos extends Model
         'duracao',
         'url_imagem',
         'id_jogador',
-        'critica'
+        'critica',
+        'finalizado'
     ];
 
     public function favoritos()

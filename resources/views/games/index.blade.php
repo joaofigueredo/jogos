@@ -52,9 +52,7 @@
                                                 <h5 class="modal-title">Confirmação</h5>
                                             </div>
                                             <div class="modal-body">
-                                                <textarea type="text" id="critica" name="critica"
-                                                    class="form-control form-control-lg"
-                                                    placeholder="Critica"></textarea>
+                                                Tem certeza que deseja adicionar {{ $jogo['name'] }} na biblioteca?
                                             </div>
 
                                             <div class="modal-footer">
@@ -63,7 +61,6 @@
                                                 <button class="btn btn-primary" type="submit">Adicionar</button>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </form>

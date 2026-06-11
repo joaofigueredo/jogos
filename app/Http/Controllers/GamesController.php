@@ -170,14 +170,13 @@ class GamesController extends Controller
     public function adicionarJogo(Request $request)
     {
         $jogo = $request->nome;
-
         $jogoCriado = Jogos::create([
             'id_jogo' => $request->id_jogo,
             'id_jogador' => $request->idJogador,
             'nome' => $request->nome,
             'duracao' => 0,
             'url_imagem' => $request->cover,
-            'critica' => $request->critica
+            'finalizado' => 0
         ]);
 
         return to_route('games.listajogos')
@@ -189,7 +188,7 @@ class GamesController extends Controller
         $usuario = Auth::user();
 
         $jogos = Jogos::where('id_jogador', $usuario->id)->get();
-
+        // dd($jogos);
         $favoritos = DB::table('favoritos')->where('user_id', $usuario->id)->pluck('id_jogo')->toArray();
 
         return view('games.listajogos')
@@ -252,5 +251,21 @@ class GamesController extends Controller
             ->with('lista', $lista)
             ->with('labels', $labels)
             ->with('valores', $valores);
+    }
+
+    public function finalizarJogo(Request $request)
+    {
+
+        // dd($request->idJogo);
+
+
+        $atualizar = Jogos::where('id', $request->idJogo)->first();
+
+        $atualizar->finalizado = true;
+        $atualizar->critica = $request->critica;
+
+        $atualizar->save();
+
+        return redirect()->back()->with('sucesso', 'Jogo adicionado aos zerados!');
     }
 }

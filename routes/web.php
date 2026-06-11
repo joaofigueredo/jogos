@@ -65,6 +65,9 @@ Route::middleware(ValidarLogin::class)->group(function () {
 
     Route::get('/favoritos', [FavoritosController::class, 'index'])
         ->name('favoritos.index');
+
+    Route::post('/finalizado', [GamesController::class, 'finalizarJogo'])
+        ->name('games.finalizar');
 });
 
 
