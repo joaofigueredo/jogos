@@ -56,9 +56,16 @@
                         <h4 class="card-title mb-3">Atividade Recente</h4>
                         <ul class="recent-activity-list">
                             @foreach ($ultimos as $ultimo)
+                            @if($ultimo->finalizado == true)
                             <li><strong
                                     class="text-primary">{{ \Carbon\Carbon::parse($ultimo->created_at)->locale('pt_BR')->translatedFormat('d \d\e F') }}</strong>
-                                zerou <span class="text-warning fw-bold">{{ $ultimo->nome }}</span>
+                                adicionou <span class="text-warning fw-bold">{{ $ultimo->nome }}</span></li>
+                                @else
+                                <li><strong
+                                    class="text-primary">{{ \Carbon\Carbon::parse($ultimo->updated_at)->locale('pt_BR')->translatedFormat('d \d\e F') }}</strong>
+                                zerou <span class="text-warning fw-bold">{{ $ultimo->nome }}</span></li>
+                                @endif
+
                                 @endforeach
                         </ul>
                     </div>
