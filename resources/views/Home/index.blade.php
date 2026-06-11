@@ -74,7 +74,11 @@
                                 <img src="{{ $ultimo->url_imagem }}" alt="Subnautica Pack"
                                     class="img-fluid game-cover shadow-sm">
                                 <h6>{{ $ultimo->nome }}</h6>
+                                @if($ultimo->finalizado == true)
                                 <p class="text-muted small">Finalizado!</p>
+                                @else
+                                <p class="text-muted small">Biblioteca</p>
+                                @endif
                             </div>
                             @endforeach
                         </div>
