@@ -45,11 +45,11 @@
                     <i class="bi bi-heart-fill"></i>
                 </button>
                 @else
-                <button class="btn btn-success btn-hover-invert btn-sm px-3 rounded-3" title="Favoritar"
-                    data-bs-toggle="modal"
-                    data-bs-target="#{{ in_array($jogo->id, $favoritos) ? 'attFavorito' : 'addFavorito' }}{{ $jogo->id }}">
+                <button class="btn btn-success btn-hover-invert btn-sm px-3 rounded-3" title="Favoritar" type="button"
+                    data-bs-toggle="modal" data-bs-target="#attFavorito{{$jogo->id}}">
                     <i class="bi bi-heart-fill"></i>
                 </button>
+
                 @endif
                 @if($jogo->finalizado == false)
                 <button class="btn btn-outline-success btn-sm px-3 rounded-3" title="" title="Excluir"
@@ -73,6 +73,30 @@
             </div>
 
         </div>
+        <!-- modal excluir favorito -->
+        <form action="{{ route('favoritos.destroy', ['id' => $jogo->id]) }}" method="POST">
+            @csrf
+            <div class="modal fade" id="attFavorito{{$jogo->id}}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow rounded-4">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-bold">Confirmação</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-start">
+                            <p class="m-0 text-secondary">Tem certeza que deseja remover o jogo
+                                <strong>{{ $jogo->nome }}</strong> dos seus favoritos?
+                            </p>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-light rounded-3 fw-semibold"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-danger rounded-3 fw-bold" type="submit">Remover</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 
         <!-- modal -->
         <div class="modal fade" id="addFinalizado{{ $jogo->id }}" tabindex="-1">

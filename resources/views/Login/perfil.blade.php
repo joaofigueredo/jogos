@@ -1,120 +1,95 @@
 <x-layout title="Editar Perfil">
-    @if(!(count($jogos) <= 0)) <div>
-        <h2 class="text-center">Favoritos</h2>
-        <h4><a href="{{ route('favoritos.index') }}" class="editarPreferidos">Editar Favoritos<i
-                    class="bi bi-pencil-square"></i></a>
-        </h4>
-    </div>
-    <div class="divFavorito">
+    @if(!(count($jogos) <= 0)) <div class="divFavorito">
         @foreach ($jogos as $jogo)
 
-        <div class="card text-white bg-dark mb-3 mt-2" style="width: 25%;">
-            <img src="{{ $jogo->url_imagem }}" class=" img-fluid mx-auto mt-3" alt="imagem de {{ $jogo->nome }}">
-            <div class="card-body divBotaoFavoritos">
-                <p class="card-text text-center">{{ $jogo->nome }}</p>
+        <!-- Seção de Favoritos -->
+        <section class="banner-favoritos text-center mb-5">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="h4 mb-0 fw-bold">Favoritos</h2>
+                    <a href="{{ route('favoritos.index') }}" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-pencil-square"></i> Editar Favoritos
+                    </a>
+                </div>
+
+                <!-- Card do Jogo -->
+                <div class="card game-card p-3 shadow-sm">
+                    <!-- Substitua pelo caminho real da sua imagem -->
+                    <img src="{{ $jogo->url_imagem }}" class="card-img-top rounded mx-auto d-block mb-2"
+                        alt="Capa do Jogo" style="width: 120px; height: 120px; object-fit: cover;">
+                    <div class="card-body p-0">
+                        <p class="card-text small fw-semibold">{{ $jogo->nome }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
         @endforeach
-    </div>
-    @endisset
-    <form action="{{ route('login.update') }}" method="POST">
-        <section class="vh-100 gradient-custom">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                            <div class="card-body p-5 text-center">
-                                <div class="mb-md-5 mt-md-4 pb-5">
-                                    <h2 class="fw-bold mb-2 text-uppercase">Editar perfil</h2>
-                                    <form action="{{ route('login.store') }}" method="POST">
-                                        @csrf
-                                        <div data-mdb-input-init class="form-outline form-white mb-4">
-                                            <input type="text" id="name" name="name"
-                                                class="form-control form-control-lg" autofocus
-                                                value="{{ $usuario->name }}" />
-                                            <label class="form-label texto-login" for="nome">Nome</label>
-                                        </div>
+        </div>
+        @endisset
+        <form action="{{ route('login.update') }}" method="POST">
+            @csrf
+            <main class="container mb-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
 
-                                    <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="card profile-card shadow">
+                            <h3 class="text-center mb-4 fw-bold text-uppercase tracking-wide">Editar Perfil</h3>
 
-                                        <h2 class="fw-bold mb-2 text-uppercase">Editar perfil</h2>
-                                        <form action="{{ route('login.store') }}" method="POST">
-                                            @csrf
-                                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                <input type="text" id="name" name="name"
-                                                    class="form-control form-control-lg" autofocus
-                                                    value="{{ $usuario->name }}" />
-                                                <label class="form-label texto-login" for="nome">Nome</label>
-                                            </div>
+                            <div class="mb-3">
+                                <label for="inputNome" class="form-label small">Nome</label>
+                                <input type="text" class="form-control form-control-lg" id="inputNome" name="name"
+                                    value="{{ $usuario->name }}" required>
+                            </div>
 
-                                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                <input type="email" name="email" id="typeEmailX"
-                                                    class="form-control form-control-lg"
-                                                    value="{{ $usuario->email }}" />
-                                                <label class="form-label texto-login" for="typeEmailX">Email</label>
-                                            </div>
+                            <div class="mb-3">
+                                <label for="inputEmail" class="form-label small">E-mail</label>
+                                <input type="email" class="form-control form-control-lg" id="inputEmail" name="email"
+                                    value="{{ $usuario->email }}" required>
+                            </div>
 
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                        <input type="text" id="idXbox" name="idXbox"
-                                                            class="form-control form-control-lg"
-                                                            value="{{ $usuario->idXbox }}" />
-                                                        <label class="form-label texto-login" for="idXbox">ID
-                                                            Xbox</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                        <input type="text" id="idPs" name="idPs"
-                                                            class="form-control form-control-lg"
-                                                            value="{{ $usuario->idPs }}" />
-                                                        <label class="form-label texto-login" for="idPs">ID
-                                                            Playstation</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <a class="btn btn-outline-light btn-lg px-5"
-                                                        href="{{ route('home.jogos') }}">Cancelar</a>
-                                                </div>
-                                                <div class="col-6">
-                                                    <button class="btn btn-outline-light btn-lg px-5" type="button"
-                                                        data-bs-toggle="modal" data-bs-target="#attPerfil"
-                                                        type="button">Salvar</button>
-                                                </div>
-                                                <!-- modal -->
-                                                <div class="modal fade" id="attPerfil" tabindex="-1">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title textoModal">Confirmação</h5>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p class="textoModal">Tem certeza que deseja Salvar as
-                                                                    novas
-                                                                    informações?</p>
-
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger"
-                                                                    data-bs-dismiss="modal">Cancelar</button>
-                                                                <button class="btn btn-primary"
-                                                                    type="submit">Salvar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <div class="row g-3 mb-4">
+                                <div class="col-sm-6">
+                                    <label for="idXbox" class="form-label small">ID Xbox</label>
+                                    <input type="text" class="form-control form-control-lg" id="idXbox" name="idXbox"
+                                        value="{{ $usuario->idXbox }}">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="idPlaystation" class="form-label small">ID Playstation</label>
+                                    <input type="text" class="form-control form-control-lg" id="idPlaystation"
+                                        name="idPs" value="{{ $usuario->idPs }}">
                                 </div>
                             </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-purple btn-lg" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#attPerfil">
+                                    <i class="bi bi-check-circle me-2"></i>Salvar Alterações
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+
+            <div class="modal fade" id="attPerfil" tabindex="-1" aria-labelledby="attPerfilLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title textoModal" id="attPerfilLabel">Confirmação</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="textoModal">Tem certeza que deseja salvar as novas informações?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-primary" type="submit">Salvar</button>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </form>
-</x-layout>g
+</x-layout>

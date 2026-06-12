@@ -669,3 +669,46 @@ body {
     color: #198754 !important;            /* Texto fica no verde padrão do Bootstrap */
     border-color: #198754 !important;     /* Borda também fica verde para não sumir */
 }
+
+/* estilo perfil */
+        .banner-favoritos {
+            background-color: #8a63d2; /* Tom de roxo aproximado da imagem */
+            padding: 2rem 0;
+            color: white;
+        }
+        .game-card {
+            background-color: #1e222b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .profile-card {
+            background-color: #1e222b;
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+        .profile-card .form-label {
+            color: #adb5bd;
+            font-weight: 500;
+        }
+        .profile-card .form-control {
+            background-color: #ffffff;
+            color: #212529;
+            border: 2px solid transparent;
+        }
+        .profile-card .form-control:focus {
+            border-color: #8a63d2;
+            box-shadow: 0 0 0 0.25rem rgba(138, 99, 210, 0.25);
+        }
+        .btn-purple {
+            background-color: #8a63d2;
+            color: white;
+            font-weight: 600;
+        }
+        .btn-purple:hover {
+            background-color: #714db8;
+            color: white;
+        }
