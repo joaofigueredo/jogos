@@ -39,11 +39,18 @@
                         <i class="bi bi-lightbulb-fill"></i> <span class="d-none d-lg-inline ms-1">Dica</span>
                     </button>
                 </form>
-
+                @if(!in_array($jogo->id, $favoritos))
                 <button class="btn btn-outline-success btn-sm px-3 rounded-3" title="Favoritar" data-bs-toggle="modal"
                     data-bs-target="#{{ in_array($jogo->id, $favoritos) ? 'attFavorito' : 'addFavorito' }}{{ $jogo->id }}">
                     <i class="bi bi-heart-fill"></i>
                 </button>
+                @else
+                <button class="btn btn-success btn-hover-invert btn-sm px-3 rounded-3" title="Favoritar"
+                    data-bs-toggle="modal"
+                    data-bs-target="#{{ in_array($jogo->id, $favoritos) ? 'attFavorito' : 'addFavorito' }}{{ $jogo->id }}">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+                @endif
                 @if($jogo->finalizado == false)
                 <button class="btn btn-outline-success btn-sm px-3 rounded-3" title="" title="Excluir"
                     data-bs-toggle="modal" data-bs-target="#addFinalizado{{ $jogo->id }}" type="button">

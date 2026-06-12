@@ -191,7 +191,7 @@ class GamesController extends Controller
         $jogos = Jogos::where('id_jogador', $usuario->id)->get();
         // dd($jogos);
         $favoritos = DB::table('favoritos')->where('user_id', $usuario->id)->pluck('id_jogo')->toArray();
-
+        // dd($favoritos);
         return view('games.listajogos')
             ->with('jogos', $jogos)
             ->with('favoritos', $favoritos);

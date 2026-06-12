@@ -663,3 +663,9 @@ body {
         .recent-activity-list li:last-child {
             border-bottom: none;
         }
+
+        .btn-hover-invert:hover {
+    background-color: #ffffff !important; /* Fundo fica branco */
+    color: #198754 !important;            /* Texto fica no verde padrão do Bootstrap */
+    border-color: #198754 !important;     /* Borda também fica verde para não sumir */
+}
