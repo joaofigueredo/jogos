@@ -1,68 +1,49 @@
 <x-layout title="Similares">
-    <div class="container mx-auto mt-4">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card-jogos">
-                    @if(!empty($jogo1[0]['cover']['url']))
-                    <img src="https:{{$jogo1[0]['cover']['url']}}" class="card-img-top imagem-jogo"
-                        alt="Imagem do jogo {{$jogo1[0]['name']}}">
-                    @else
-                    <img src="{{ asset('images/img-nao-disponivel.png') }}" alt="Imagem não disponível"
-                        class="card-img-top imagem-jogo">
-                    @endif
-                    <div class="card-body">
-                        <h5 class="card-title card-titulo-jogo">{{ $jogo1[0]['name']}} </h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Plataformas</h6>
-                        <ul>
-                            @if(!empty($jogo1[0]['platforms']))
-                            @foreach ($jogo1[0]['platforms'] as $platform)
-                            <li>{{$platform['name']}}</li>
-                            @endforeach
-                            @endif
-                            @if(empty($platform['name']))
-                            <li>---</li>
-                            @endif
+    <div class="col">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden game-card bg-white">
+                <img src="{{$jogo1[0]['cover']['url']}}" class="card-img-top game-cover" alt="">
+                <div class="card-body d-flex flex-column justify-content-between p-3">
+                    <h5 class="card-title fw-bold text-dark text-truncate mb-3">{{$jogo1[0]['name']}}</h5>
 
-                        </ul>
-                        <div class="botaoVoltarAdicionar">
-                            <form class="botaoAdd" action="{{ route('adicionar') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id_jogo" value="{{ $jogo1[0]['id'] }}">
-                                <input type="hidden" name="nome" value="{{ $jogo1[0]['name'] }}">
-                                <input type="hidden" name="cover" value="{{ $jogo1[0]['cover']['url'] }}">
-                                <input type="hidden" name="idJogador" value="{{ auth()->user()->id }}">
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <span class="text-muted small"><i class="bi bi-calendar-event me-1"></i></span>
 
-                                <button type="button" class="btn btn-primary"" data-bs-toggle=" modal"
-                                    data-bs-target="#addJogo">Adicionar</button>
-
-                                <!-- modal -->
-                                <div class="modal fade" id="addJogo" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Confirmação</h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                <textarea type="text" id="critica" name="critica"
-                                                    class="form-control form-control-lg"
-                                                    placeholder="Critica"></textarea>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">Cancelar</button>
-                                                <button class="btn btn-primary" type="submit">Adicionar</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <button class="btn btn-outline-danger btn-sm border-0 rounded-circle p-2" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addJogo{{$jogo1[0]['id']}}">
+                            <i class="bi bi-plus-circle-fill fs-6"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <form class="botaoAdd" action="{{ route('adicionar') }}" method="POST">
+        @csrf
+        <input type="hidden" name="id_jogo" value="{{ $jogo1[0]['id'] }}">
+        <input type="hidden" name="nome" value="{{ $jogo1[0]['name'] }}">
+        <input type="hidden" name="cover" value="{{ $jogo1[0]['cover']['url'] }}">
+        <input type="hidden" name="idJogador" value="{{ auth()->user()->id }}">
+
+        <!-- modal -->
+        <div class="modal fade" id="addJogo{{ $jogo1[0]['id'] }}" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmação</h5>
+                    </div>
+                    <div class="modal-body">
+                        Tem certeza que deseja adicionar {{ $jogo1[0]['name'] }} na biblioteca?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </x-layout>

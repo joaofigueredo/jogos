@@ -23,7 +23,7 @@
                                 <span class="text-muted small"><i class="bi bi-calendar-event me-1"></i></span>
 
                                 <button class="btn btn-outline-danger btn-sm border-0 rounded-circle p-2" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#addJogo">
+                                    data-bs-target="#addJogo{{ $jogo['id'] }}">
                                     <i class="bi bi-plus-circle-fill fs-6"></i>
                                 </button>
                             </div>
@@ -39,7 +39,7 @@
                 <input type="hidden" name="idJogador" value="{{ auth()->user()->id }}">
 
                 <!-- modal -->
-                <div class="modal fade" id="addJogo" tabindex="-1">
+                <div class="modal fade" id="addJogo{{ $jogo['id'] }}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
