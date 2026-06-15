@@ -565,9 +565,10 @@ body {
 .divFavorito{
     display: flex;
     flex-direction: row;
+    background-color: #343a40;
     justify-content: space-around;
     align-content: center;
-    background-color: #9370DB;
+    
 }
 .cardFavorito{
     background-color: #6495ED;
@@ -672,7 +673,6 @@ body {
 
 /* estilo perfil */
         .banner-favoritos {
-            background-color: #8a63d2; /* Tom de roxo aproximado da imagem */
             padding: 2rem 0;
             color: white;
         }

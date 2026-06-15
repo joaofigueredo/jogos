@@ -1,18 +1,22 @@
 <x-layout title="Similares">
-    <div class="col">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden game-card bg-white">
-                <img src="{{$jogo1[0]['cover']['url']}}" class="card-img-top game-cover" alt="">
-                <div class="card-body d-flex flex-column justify-content-between p-3">
-                    <h5 class="card-title fw-bold text-dark text-truncate mb-3">{{$jogo1[0]['name']}}</h5>
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden game-card bg-white">
+                        <img src="{{$jogo1[0]['cover']['url']}}" class="card-img-top game-cover" alt="">
+                        <div class="card-body d-flex flex-column justify-content-between p-3">
+                            <h5 class="card-title fw-bold text-dark text-truncate mb-3">{{$jogo1[0]['name']}}</h5>
 
-                    <div class="d-flex justify-content-between align-items-center mt-2">
-                        <span class="text-muted small"><i class="bi bi-calendar-event me-1"></i></span>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted small"><i class="bi bi-calendar-event me-1"></i></span>
 
-                        <button class="btn btn-outline-danger btn-sm border-0 rounded-circle p-2" type="button" data-bs-toggle="modal"
-                            data-bs-target="#addJogo{{$jogo1[0]['id']}}">
-                            <i class="bi bi-plus-circle-fill fs-6"></i>
-                        </button>
+                                <button class="btn btn-outline-danger btn-sm border-0 rounded-circle p-2" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#addJogo{{$jogo1[0]['id']}}">
+                                    <i class="bi bi-plus-circle-fill fs-6"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,8 +41,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger"
-                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                         <button class="btn btn-primary" type="submit">Adicionar</button>
                     </div>
                 </div>

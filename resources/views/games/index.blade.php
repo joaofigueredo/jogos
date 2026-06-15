@@ -1,7 +1,7 @@
 <x-layout title="Jogos">
     <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
         <div class="d-flex align-items-center gap-2">
-            <h2 class="fw-bold text-dark m-0">Jogos</h2>
+            <h2 class="fw-bold text-dark m-0">Resultado</h2>
         </div>
         <a href="{{ route('buscar.games') }}"
             class="btn btn-success d-flex align-items-center gap-2 px-3 py-2 fw-semibold rounded-3 shadow-sm">
