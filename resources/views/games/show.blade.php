@@ -12,12 +12,16 @@
 
                         <hr class="my-4 text-muted opacity-25">
 
+                        @if($jogo[0]->critica != '')
                         <div class="bg-light p-4 rounded-3">
                             <span class="text-uppercase text-muted fw-bold small d-block mb-2">Crítica</span>
                             <p class="mb-0 text-secondary fs-6 text-wrap" style="word-break: break-word;">
                                 <i class="bi bi-chat-left-text me-2"></i>{{$jogo[0]->critica}}
                             </p>
                         </div>
+                        @else
+
+                        @endif
                     </div>
 
                 </div>
