@@ -30,10 +30,10 @@
                         </div>
 
                         <div class="d-flex align-items-center mb-3">
-                            <span class="stat-icon">⏱️</span>
+                            <span class="stat-icon">⭐</span>
                             <div>
-                                <h6 class="mb-0">Total de Horas Jogadas</h6>
-                                <p class="text-muted mb-0">3500+ horas</p>
+                                <h6 class="mb-0">Último adicionado</h6>
+                                <p class="text-muted mb-0">{{ $ultimos[0]->nome }}</p>
                             </div>
                         </div>
 
@@ -44,7 +44,6 @@
                                 <p class="text-success mb-0 fw-bold">Online, jogando God of War</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

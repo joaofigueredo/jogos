@@ -1,4 +1,13 @@
 <x-layout title="Show">
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        <div class="d-flex align-items-center gap-2">
+
+        </div>
+        <a href="{{ route('buscar.games') }}"
+            class="btn btn-success d-flex align-items-center gap-2 px-3 py-2 fw-semibold rounded-3 shadow-sm">
+            <i class="bi bi-box-arrow-left"></i> Voltar
+        </a>
+    </div>
     @isset($jogo[0])
     <div class="col mt-2">
         <div class="row justify-content-center">
