@@ -29,7 +29,7 @@
         @endisset
         <form action="{{ route('login.update') }}" method="POST">
             @csrf
-            <main class="container mb-5">
+            <main class="container mb-5 mt-2">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6">
 
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="d-grid">
-                                <a class="btn btn-purple btn-lg" href="">Cancelar</a>
+                                <a class="btn btn-purple btn-lg" href="{{ route('games.listajogos') }}">Cancelar</a>
                                 <button class=" btn btn-purple btn-lg" type="button" data-bs-toggle="modal"
                                     data-bs-target="#attPerfil">
                                     <i class="bi bi-check-circle me-2"></i>Salvar Alterações

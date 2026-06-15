@@ -142,8 +142,7 @@ class GamesController extends Controller
             ->withBody(
                 "where id = {$jogoId};
             fields name, cover.url, genres.name, platforms.name;
-            limit 1;"
-                ,
+            limit 1;",
                 'text/plain'
             )
             ->post('https://api.igdb.com/v4/games');
@@ -180,14 +179,16 @@ class GamesController extends Controller
             ->with('mensagemSucesso', "$jogo adicionado a sua conta!");
     }
 
-    public function listajogos(){
+    public function listajogos()
+    {
         $jogos = DB::table('jogos')->get();
 
         return view('games.listajogos')
             ->with('jogos', $jogos);
     }
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         Jogos::where('id', '=', $request->id)
             ->delete();
 

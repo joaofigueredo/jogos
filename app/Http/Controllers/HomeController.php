@@ -27,9 +27,7 @@ class HomeController extends Controller
         }
 
         $finalizados = DB::table('jogos')->where('finalizado', true)->count();
-        // dd($finalizados);
 
-        // dd($jogos);
         return view('home.index')->with('ultimos', $ultimos)->with('jogos', $jogos)->with('finalizados', $finalizados);
     }
 }

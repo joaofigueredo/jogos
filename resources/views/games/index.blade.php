@@ -6,7 +6,7 @@
         <a href="{{ route('buscar.games') }}"
             class="btn btn-success d-flex align-items-center gap-2 px-3 py-2 fw-semibold rounded-3 shadow-sm">
             <i class="bi bi-box-arrow-left"></i> Voltar
-            </a>
+        </a>
     </div>
     <div class="container mt-2">
         <div class="row">
@@ -22,8 +22,8 @@
                             <div class="d-flex justify-content-between align-items-center mt-2">
                                 <span class="text-muted small"><i class="bi bi-calendar-event me-1"></i></span>
 
-                                <button class="btn btn-outline-danger btn-sm border-0 rounded-circle p-2" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#addJogo{{ $jogo['id'] }}">
+                                <button class="btn btn-outline-danger btn-sm border-0 rounded-circle p-2" type="button"
+                                    data-bs-toggle="modal" data-bs-target="#addJogo{{ $jogo['id'] }}">
                                     <i class="bi bi-plus-circle-fill fs-6"></i>
                                 </button>
                             </div>
@@ -50,8 +50,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger"
-                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                                 <button class="btn btn-primary" type="submit">Adicionar</button>
                             </div>
                         </div>

@@ -256,9 +256,6 @@ class GamesController extends Controller
     public function finalizarJogo(Request $request)
     {
 
-        // dd($request->idJogo);
-
-
         $atualizar = Jogos::where('id', $request->idJogo)->first();
 
         $atualizar->finalizado = true;
