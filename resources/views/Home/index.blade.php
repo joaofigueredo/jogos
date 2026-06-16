@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="d-flex align-items-center mb-3">
-                            <span class="stat-icon">🏆</span>
+                            <span class="stat-icon">🕹️</span>
                             <div>
                                 <h6 class="mb-0">Jogos zerados</h6>
                                 <p class="text-muted mb-0">{{ $finalizados }}</p>
@@ -37,13 +37,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex align-items-center">
-                            <span class="stat-icon">🟢</span>
-                            <div>
-                                <h6 class="mb-0">Status Online</h6>
-                                <p class="text-success mb-0 fw-bold">Online, jogando God of War</p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

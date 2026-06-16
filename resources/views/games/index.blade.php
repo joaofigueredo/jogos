@@ -14,8 +14,12 @@
             <div class="col">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                     <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden game-card bg-white">
-                        <img src="https:{{$jogo['cover']['url']}}" class="card-img-top game-cover" alt="">
-
+                        @isset($jogo['cover']['url'])
+                        <img src="https:{{$jogo['cover']['url']}}" class="card-img-top game-cover"
+                            alt="Imagem do jogo {{ $jogo['name'] }}">
+                        @else
+                        <img src="{{ asset('images/img-nao-disponivel.png') }}" class="card-img-top game-cover" alt="">
+                        @endisset
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <h5 class="card-title fw-bold text-dark text-truncate mb-3">{{$jogo['name']}}</h5>
 
@@ -35,7 +39,11 @@
                 @csrf
                 <input type="hidden" name="id_jogo" value="{{ $jogo['id'] }}">
                 <input type="hidden" name="nome" value="{{ $jogo['name'] }}">
+                @isset($jogo['cover']['url'])
                 <input type="hidden" name="cover" value="{{ $jogo['cover']['url'] }}">
+                @else
+                <input type="hidden" name="cover" value="{{ asset('images/img-nao-disponivel.png') }}">
+                @endisset
                 <input type="hidden" name="idJogador" value="{{ auth()->user()->id }}">
 
                 <!-- modal -->

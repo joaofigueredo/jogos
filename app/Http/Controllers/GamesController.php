@@ -96,6 +96,8 @@ class GamesController extends Controller
                 ->withErrors(['erro' => $mensagemErro]);
         }
 
+
+        // dd($jogos);
         return view('games.index')
             ->with('jogos', $jogos);
     }
@@ -169,6 +171,8 @@ class GamesController extends Controller
 
     public function adicionarJogo(Request $request)
     {
+
+        // dd($request->all());
         $jogo = $request->nome;
         $jogoCriado = Jogos::create([
             'id_jogo' => $request->id_jogo,

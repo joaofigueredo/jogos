@@ -1,32 +1,9 @@
 <x-layout title="Estatisticas">
-    @isset($valores, $labels, $lista)
+    @isset($valores, $labels, $jogos)
     <div class="container" style="max-width: 300px;">
         <canvas id="myChart"></canvas>
     </div>
-
-    @push('scripts')
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: @json($labels),
-                datasets: [{
-                    label: 'Jogos mensais',
-                    data: @json($valores),
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            }
-        });
-    });
-    </script>
-    @endpush
-
     @foreach($jogos as $mes =>$lista)
-
     <h3>
         <h3 class="text-center mb-4 fw-bold">
             Jogados em {{ $mes }}
@@ -65,10 +42,33 @@
             </div>
         </div>
 
+
         @endforeach
+        @push('scripts')
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: @json($labels),
+                    datasets: [{
+                        label: 'Jogos mensais',
+                        data: @json($valores),
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                }
+            });
+        });
+        </script>
+        @endpush
         @else
         <h1>Nenhum jogo</h1>
         @endisset
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </x-layout>

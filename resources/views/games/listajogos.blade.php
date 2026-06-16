@@ -5,11 +5,11 @@
             <span class="badge bg-success rounded-pill fs-6">{{ count($jogos) }}
                 {{ count($jogos) == 1 ? 'Jogo' : 'Jogos' }}</span>
         </div>
-        @if(count($jogos) < 4) <a href="{{ route('buscar.games') }}"
+        <a href="{{ route('buscar.games') }}"
             class="btn btn-success d-flex align-items-center gap-2 px-3 py-2 fw-semibold rounded-3 shadow-sm">
             <i class="bi bi-plus-lg"></i> Adicionar a Biblioteca
-            </a>
-            @endif
+        </a>
+
     </div>
     <div class="list-group gap-2">
         @foreach ($jogos as $jogo)
