@@ -173,6 +173,20 @@ class GamesController extends Controller
     {
 
         // dd($request->all());
+        $user_id = Auth::id();
+        $id_jogo = intval($request->id_jogo);
+
+        $jogoRepetido = DB::table('jogos')
+            ->where('id_jogador', $user_id)
+            ->where('id_jogo', $id_jogo)
+            ->exists();
+
+        if ($jogoRepetido) {
+            return to_route('games.listajogos')
+                ->withErrors("Jogo já adicionado!");
+        }
+
+        // dd($jogoRepetido);
         $jogo = $request->nome;
         $jogoCriado = Jogos::create([
             'id_jogo' => $request->id_jogo,
