@@ -73,7 +73,7 @@
                             @foreach ($ultimos as $ultimo)
                             <div class="col-6 col-sm-4 mb-3">
                                 <img src="{{ $ultimo->url_imagem }}" alt="Subnautica Pack"
-                                    class="img-fluid game-cover shadow-sm">
+                                    class="img-fluid game-cover shadow-sm" style="height: 100px;">
                                 <h6>{{ $ultimo->nome }}</h6>
                                 @if($ultimo->finalizado == true)
                                 <p class="text-muted small">Finalizado!</p>

@@ -29,14 +29,53 @@
                             </p>
                         </div>
                         @else
+                        <div class="card-body d-flex flex-column justify-content-between p-3">
+                            <h5 class="card-title fw-bold text-dark text-truncate mb-3"></h5>
 
-                        @endif
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted small"><i class="bi bi-calendar-event me-1"></i></span>
+
+                                <button class="btn btn-outline-success btn-sm px-3 rounded-3" title="" title="Excluir"
+                                    data-bs-toggle="modal" data-bs-target="#addFinalizado{{ $jogo[0]->id }}"
+                                    type="button">
+                                    <i class="bi bi-plus-circle-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
-
+                    @endif
                 </div>
+
             </div>
         </div>
     </div>
+    </div>
+    </div>
+    <div class="modal fade" id="addFinalizado{{ $jogo[0]->id }}" tabindex="-1">
+        <form class="botaoAdd" action="{{ route('games.finalizar') }}" method="POST">
+            @csrf
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmação</h5>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" value="{{ $jogo[0]->id }}" id="idJogo" name="idJogo">
+                        <p>Adicionar jogo aos zerados?</p>
+                        <textarea type="text" id="critica" name="critica" class="form-control form-control-lg"
+                            placeholder="Critica"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" type="submit">Adicionar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
     </div>
     @else
     <h3 class="text-center mt-2">Nenhum jogo encontrado!</h3>

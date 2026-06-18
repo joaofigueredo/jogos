@@ -19,7 +19,7 @@
 
             <div class="d-flex align-items-center gap-3">
                 <div class="bg-light p-3 rounded-3 text-success">
-                    <img src="{{ $jogo->url_imagem }}" alt="imagem do jogo">
+                    <img src="{{ $jogo->url_imagem }}" alt="imagem do jogo" style="height: 90px;">
                 </div>
                 <div>
                     <h6 class="fw-bold text-dark mb-0 fs-5">{{ $jogo->nome }}</h6>
