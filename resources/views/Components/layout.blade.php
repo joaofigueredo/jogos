@@ -16,68 +16,6 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 body">
-
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                @if (Auth::check())
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('home.jogos') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('buscar.games') }}">Jogos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('games.listajogos') }}">Sua lista</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('games.estatisticas') }}">Estatisticas</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('favoritos.index') }}">Favoritos</a>
-                </li>
-
-                <li class="nav-item">
-                    <form action="{{ route('games.buscar') }}" method="POST">
-                        @csrf
-                        <input type="text" id="nome" name="nome">
-                        <button type="submit" class="btn btn-info">buscar</button>
-                    </form>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav">
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle fst-italic"> {{Auth::user()->name}}</i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('login.perfil') }}"><i
-                                    class="bi bi-person"></i>Perfil</a></li>
-                        <li>
-                            <div class="d-flexjustify-content-end">
-                                <form method="POST" action="{{ route('login.logout') }}">
-                                    @csrf
-                        <li class="nav-item">
-                            <button class="nav-link"><i class="bi bi-arrow-bar-right"> Sair</i></button>
-                        </li>
-                        </form>
-                </div>
-                </li>
-            </ul>
-            @endif
-            @if(!Auth::check())
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login.index') }}">Login</a>
-                </li>
-            </ul>
-            @endif
-        </div>
-    </nav> -->
-
     <nav class="navbar navbar-expand-lg border-bottom shadow-sm py-3">
         <div class="container-fluid px-4">
             <div class="collapse navbar-collapse d-flex justify-content-between align-items-center">
@@ -88,7 +26,7 @@
                     <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
                             href="{{ route('buscar.games') }}">Jogos</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary fw-semibold" href="
-                            {{ route('games.listajogos') }}">Sua lista</a></li>
+                            {{ route('games.listajogos') }}">Biblioteca</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
                             href="{{ route('games.estatisticas') }}">Estatísticas</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary fw-semibold"
