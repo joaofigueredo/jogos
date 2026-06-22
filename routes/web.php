@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\FavoritosController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GamesController;
 use App\Http\Middleware\ValidarLogin;
+use App\Mail\ResetarSenhaEmail;
+use App\Notifications\CustomResetPassword;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -95,3 +101,14 @@ Route::post('/login', [LoginController::class, 'login'])
 
 Route::post('/logout', [LoginController::class, 'Logout'])
     ->name('login.logout');
+
+// Rota para exibir a tela (View)
+Route::get('/esqueci-senha', [ForgotPasswordController::class, 'exibirTela'])
+    ->name('password.request');
+
+// Rota para processar o clique do botão (POST)
+Route::post('/esqueci-senha', [ForgotPasswordController::class, 'enviarLinkReset'])
+    ->name('password.email');
+
+Route::get('/nova-senha/{token}', [ForgotPasswordController::class, 'mostrarFormulario'])
+    ->name('password.reset');

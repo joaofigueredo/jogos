@@ -9,6 +9,7 @@ use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Password;
 
 class LoginController extends Controller
 {
@@ -102,5 +103,10 @@ class LoginController extends Controller
 
         return to_route("login.perfil")
             ->with('sucesso', 'Perfil atualizado com sucesso!');
+    }
+
+    public function esqueciSenha()
+    {
+        return view('auth.esqueci-senha');
     }
 }

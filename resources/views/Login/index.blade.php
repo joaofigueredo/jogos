@@ -15,16 +15,16 @@
 
 <body class="login-body">
   @if ($errors->any())
-    <div class="alert alert-danger" id="mensagem">
-      <ul>
-        @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
+  <div class="alert alert-danger" id="mensagem">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
   @endif
   <script>
-    setTimeout(function () {
+    setTimeout(function() {
       document.getElementById('mensagem').style.display = 'none';
     }, 5000);
   </script>
@@ -43,25 +43,31 @@
                   <p class="text-white-50 mb-5">Por favor entre com seu e-mail e senha!</p>
 
                   <div data-mdb-input-init class="form-outline form-white mb-4">
-                    <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg" autofocus />
+                    <input type="email" name="email" id="typeEmailX"
+                      class="form-control form-control-lg" autofocus />
                     <label class="form-label texto-login" for="typeEmailX">Email</label>
                   </div>
 
                   <div data-mdb-input-init class="form-outline form-white mb-4">
-                    <input type="password" id="typePasswordX" name="password" class="form-control form-control-lg" />
+                    <input type="password" id="typePasswordX" name="password"
+                      class="form-control form-control-lg" />
                     <label class="form-label texto-login" for="typePasswordX">Senha</label>
                   </div>
 
-                  <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Esqueceu a senha?</a></p>
+                  <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Esqueceu a
+                      senha?</a></p>
 
-                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
-                    type="submit">Login</button>
+                  <button data-mdb-button-init data-mdb-ripple-init
+                    class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 
                 </div>
 
                 <div>
                   <p class="mb-0">Não tem uma conta? <a href="{{ route('login.create') }}"
                       class="text-white-50 fw-bold">Criar conta</a>
+                  </p>
+                  <p class="mb-0">Esqueceu a senha? <a href="{{ route('auth.esqueciSenha') }}"
+                      class="text-white-50 fw-bold">Resetar senha</a>
                   </p>
                 </div>
 
