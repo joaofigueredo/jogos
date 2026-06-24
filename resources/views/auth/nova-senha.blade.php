@@ -12,7 +12,7 @@
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-gray-800">Criar Nova Senha</h2>
 
-        <form action="{{ route('password.update') }}" method="POST">
+        <form action="{{ route('password.email') }}" method="POST">
             @csrf
 
             <input type="hidden" name="token" value="{{ $token }}">
