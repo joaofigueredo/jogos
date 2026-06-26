@@ -112,3 +112,6 @@ Route::post('/esqueci-senha', [ForgotPasswordController::class, 'enviarLinkReset
 
 Route::get('/nova-senha/{token}', [ForgotPasswordController::class, 'mostrarFormulario'])
     ->name('password.reset');
+
+Route::post('/reset-senha', [ForgotPasswordController::class, 'resetPassword'])
+    ->name('password.update');
