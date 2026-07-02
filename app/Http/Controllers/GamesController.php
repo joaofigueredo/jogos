@@ -42,7 +42,7 @@ class GamesController extends Controller
             ]);
 
         if (!$response->successful()) {
-            \Log::error('Twitch token request failed', ['status' => $response->status(), 'body' => $response->body()]);
+            \Log::error('A solicitação de token da Twitch falhou', ['status' => $response->status(), 'body' => $response->body()]);
             return null;
         }
 
@@ -84,7 +84,7 @@ class GamesController extends Controller
             ->post('https://api.igdb.com/v4/games');
 
         if (!$response->successful()) {
-            \Log::error('IGDB /games request failed', ['status' => $response->status(), 'body' => $response->body()]);
+            \Log::error('IGDB / a requisicao falhou', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro na busca de jogos.']);
         }
 
@@ -123,7 +123,7 @@ class GamesController extends Controller
             ->post('https://api.igdb.com/v4/games');
 
         if (!$response->successful()) {
-            \Log::error('IGDB search similar request failed', ['status' => $response->status(), 'body' => $response->body()]);
+            \Log::error('IGDB busca por jogos similares falhou', ['status' => $response->status(), 'body' => $response->body()]);
             return back()->withErrors(['erro' => 'Erro na busca de jogos similares.']);
         }
 
