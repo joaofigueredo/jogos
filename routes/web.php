@@ -77,13 +77,6 @@ Route::middleware(ValidarLogin::class)->group(function () {
 });
 
 
-
-
-
-
-
-
-
 //Rota de login
 Route::get('/login', [LoginController::class, 'index'])
     ->name('login.index');
