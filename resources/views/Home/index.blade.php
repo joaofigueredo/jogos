@@ -1,7 +1,7 @@
 <x-layout title="Jogos">
     <div class="header-bg shadow-sm">
         <div class="container text-center">
-            <h1 class="display-5 fw-bold">Bem-vindo ao Seu Hub de Jogos</h1>
+            <h1 class="display-6 fw-bold">Bem-vindo ao Seu Hub de Jogos</h1>
             <p class="lead">Confira suas estatísticas e atividades recentes.</p>
         </div>
     </div>
