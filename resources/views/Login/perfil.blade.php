@@ -61,9 +61,9 @@
                                 </div>
                             </div>
 
-                            <div class="d-grid">
-                                <a class="btn btn-purple btn-lg" href="{{ route('games.listajogos') }}">Cancelar</a>
-                                <button class=" btn btn-purple btn-lg" type="button" data-bs-toggle="modal"
+                            <div class="d-flex justify-content-between gap-2">
+                                <a class="btn btn-purple" href="{{ route('games.listajogos') }}">Cancelar</a>
+                                <button class="btn btn-purple btn-lg" type="button" data-bs-toggle="modal"
                                     data-bs-target="#attPerfil">
                                     <i class="bi bi-check-circle me-2"></i>Salvar Alterações
                                 </button>
